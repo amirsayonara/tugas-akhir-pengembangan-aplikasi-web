@@ -85,7 +85,7 @@ CREATE TABLE `pengguna` (
 INSERT INTO `pengguna` (`id`, `email`, `nama`, `alamat`, `nomor_hp`) VALUES
 ('AB12C-ABCHD-8ABCD-88CAA', 'admin@admin.com', 'NAMA ADMIN', 'ALAMAT ADMIN', '080000000000'),
 ('AB12C-ABCHD-8ABCD-88CAB', 'user@user.com', 'NAMA USER', 'ALAMAT USER', '080000000001'),
-('AB12C-ABCHD-8ABCD-88CAC', 'user2@user.com', 'NAMA USER 2', 'ALAMAT USER 2', '080000000002');
+('AB12C-ABCHD-8ABCD-88CAC', 'user2@user.com', 'NAMA USER DUA', 'ALAMAT USER 2', '080000000002');
 
 -- --------------------------------------------------------
 
