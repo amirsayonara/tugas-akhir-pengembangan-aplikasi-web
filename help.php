@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
-    <title>C07 Internet Banking</title>
+    <title>C07 Internet Banking - Bantuan</title>
 </head>
 <body>
     <header>
@@ -13,8 +13,8 @@
             <h1>C07 Net Banking</h1>
             <nav>
                 <ul>
-                    <li><a class="dipilih">Halaman Depan</a></li>
-                    <li><a href="help">Bantuan</a></li>
+                    <li><a href=".">Halaman Depan</a></li>
+                    <li><a class="dipilih">Bantuan</a></li>
                 </ul>
             </nav>
         </div>
@@ -22,14 +22,18 @@
     <div class="konten-utama">
         <div class="kiri">
             <div class="artikel">
-                <h2>Halaman Depan</h2>
-                <p>Selamat datang di C07 Internet Banking</p>
+                <h2>Menu</h2>
+                <ul>
+                    <li>Masuk</li>
+                    <li>Informasi Rekening</li>
+                    <li>Transfer</li>
+                </ul>
             </div>
         </div>
         <div class="kanan">
             <div class="artikel">
-                <h2>Halaman Depan</h2>
-                <p>Selamat datang di C07 Internet Banking</p>
+                <h2>Masuk</h2>
+                <p>Cara masuk</p>
             </div>
         </div>
     </div>

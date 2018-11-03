@@ -13,7 +13,7 @@
             <h1>C07 Net Banking</h1>
             <nav>
                 <ul>
-                    <li><a href="bantuan">Bantuan</a></li>
+                    <li><a href="help">Bantuan</a></li>
                 </ul>
             </nav>
         </div>
