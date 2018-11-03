@@ -49,4 +49,11 @@ function saldo($nomor_rekening) {
     return @$q->fetchAll()[0][0];
 }
 
+function mutasi($nomor_rekening) {
+    global $conn;
+    $q = $conn->prepare("SELECT * FROM transaksi t JOIN jenis_transaksi j ON j.id=t.jenis_transaksi WHERE t.rekening_asal='$nomor_rekening' or t.rekening_tujuan='$nomor_rekening'");
+    $q->execute();
+    return @$q->fetchAll();
+}
+
 ?>
