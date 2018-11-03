@@ -32,7 +32,21 @@ function pengguna() {
     global $conn;
     $q = $conn->prepare("SELECT * FROM akun_pengguna a JOIN jenis_pengguna j ON a.jenis_pengguna=j.id JOIN pengguna p ON a.id_pengguna=p.id WHERE a.nama_pengguna='{$_SESSION['nama-pengguna']}'");
     $q->execute();
-    return $q->fetchAll()[0];
+    return @$q->fetchAll()[0];
+}
+
+function list_rekening($nama_pengguna) {
+    global $conn;
+    $q = $conn->prepare("SELECT * FROM rekening WHERE id_pengguna=(SELECT id_pengguna FROM akun_pengguna WHERE nama_pengguna='$nama_pengguna')");
+    $q->execute();
+    return @$q->fetchAll();
+}
+
+function saldo($nomor_rekening) {
+    global $conn;
+    $q = $conn->prepare("SELECT IFNULL((SELECT SUM(nominal) FROM transaksi WHERE rekening_asal=r.nomor_rekening AND jenis_transaksi='0'), 0) + IFNULL((SELECT SUM(nominal) FROM transaksi WHERE rekening_tujuan=r.nomor_rekening AND jenis_transaksi='1'), 0) - IFNULL((SELECT SUM(nominal) FROM transaksi WHERE rekening_asal=r.nomor_rekening AND jenis_transaksi='1'), 0)'saldo' FROM rekening r WHERE r.nomor_rekening='$nomor_rekening'");
+    $q->execute();
+    return @$q->fetchAll()[0][0];
 }
 
 ?>

@@ -14,7 +14,7 @@
             <h1>C07 Net Banking</h1>
             <nav>
                 <ul>
-                    <li><a class="dipilih">Beranda</a> |</li>
+                    <li><a href=".">Beranda</a> |</li>
                     <li><a href="help">Bantuan </a> |</li>
                     <li><a href="logout">Logout</a></li>
                 </ul>
@@ -42,7 +42,7 @@
                     <?php if (pengguna()['jenis_pengguna']=='0') {?>
                     <li>Manajemen Pengguna</li>
                     <?php } else {?>
-                    <li><a href="rek-info">Informasi Rekening</a></li>
+                    <li><a>Informasi Rekening</a></li>
                     <li><a href="rek-mutation">Mutasi Rekening</a></li>
                     <li><a href="transfer">Transfer</a></li>
                     <li><a href="user-management">Manajemen Pengguna</a></li>
@@ -52,8 +52,42 @@
         </div>
         <div class="kanan">
             <div class="artikel">
-                <h2>Halaman Depan</h2>
-                <p>Selamat datang <?=pengguna()['nama']?> di C07 Internet Banking!</p>
+                <h2>Informasi Rekening</h2>
+                <form method="POST">
+                    <table>
+                        <tr>
+                            <td><label for="nomor-rekening">Pilih Rekening</label></td>
+                            <td>
+                                <select name="nomor-rekening" id="nomor-rekening">
+                                    <option value="-1">---</option>
+                                    <?php
+                                    foreach (list_rekening($_SESSION['nama-pengguna']) as $x) echo "<option value=\"{$x['nomor_rekening']}\">{$x['nomor_rekening']}</option>";
+                                    ?>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td><td><input type="submit" value="Kirim"></td>
+                        </tr>
+                    </table>
+                </form>
+                <?php
+                if (!empty($_POST)) {
+                    $saldo = saldo(@$_POST['nomor-rekening']);
+                    if($saldo) {
+                        ?><hr>
+                        <table>
+                            <tr>
+                                <td>Rekening</td><td>: <?=$_POST['nomor-rekening']?></td>
+                            </tr>
+                            <tr>
+                                <td>Saldo</td><td>: Rp <?=$saldo?></td>
+                            </tr>
+                        </table>
+                        <?php
+                    }
+                }
+                ?>
             </div>
         </div>
     </div>
