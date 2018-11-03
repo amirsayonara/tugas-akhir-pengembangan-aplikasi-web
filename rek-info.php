@@ -73,7 +73,7 @@
                 </form>
                 <?php
                 if (!empty($_POST)) {
-                    $saldo = saldo(@$_POST['nomor-rekening']);
+                    $saldo = info_rekening(@$_POST['nomor-rekening'])['saldo'];
                     if($saldo) {
                         ?><hr>
                         <table>
