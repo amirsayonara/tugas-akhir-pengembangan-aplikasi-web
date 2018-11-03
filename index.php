@@ -1,3 +1,4 @@
+<?php include 'includes/api.php'; require 'includes/sudah-masuk.php' ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -15,6 +16,7 @@
                 <ul>
                     <li><a class="dipilih">Halaman Depan</a></li>
                     <li><a href="help">Bantuan</a></li>
+                    <li><a href="logout">Logout</a></li>
                 </ul>
             </nav>
         </div>
@@ -22,14 +24,23 @@
     <div class="konten-utama">
         <div class="kiri">
             <div class="artikel">
-                <h2>Halaman Depan</h2>
-                <p>Selamat datang di C07 Internet Banking</p>
+                <h3>Info Pengguna</h3>
+                <div class="info-pengguna">
+                    <table>
+                        <tr>
+                            <td>Nama</td><td>: <b><?=pengguna()['nama']?></b></td>
+                        </tr>
+                        <tr>
+                            <td>Jenis Pengguna</td><td>: <?=pengguna()['keterangan']?></td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
         <div class="kanan">
             <div class="artikel">
                 <h2>Halaman Depan</h2>
-                <p>Selamat datang di C07 Internet Banking</p>
+                <p>Selamat datang <?=pengguna()['nama']?> di C07 Internet Banking!</p>
             </div>
         </div>
     </div>

@@ -108,7 +108,7 @@ header li a:hover, .dipilih {
     padding-bottom: 10px;
 }
 
-.kiri .artikel h2 {
+.kiri .artikel h2, .kiri .artikel h3 {
     text-align: center;
     border: 0;
 }
@@ -146,4 +146,8 @@ form {
 td ul {
     margin: 0px;
     padding: 0px 20px;
+}
+
+.info-pengguna {
+    font-size: 9.5pt;
 }

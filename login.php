@@ -1,3 +1,4 @@
+<?php include 'includes/api.php'; if (isset($_SESSION['nama-pengguna'])) header('Location: ./');?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -21,24 +22,12 @@
     <div class="konten-utama">
         <div class="kiri">
             <div class="artikel">
-                <h2>Login</h2>
-                <form method="POST">
-                    <table>
-                        <tr>
-                            <td><span class="pesan-error"><?=@$pesan_error['sistem']?></span></td>
-                        </tr><tr>
-                            <td><input type="text" name="username" id="username" value="<?=@$_POST['username']?>" placeholder="Username"></td>
-                        </tr><tr>
-                            <td><span class="pesan-error"><?=@$pesan_error['username']?></span></td>
-                        </tr><tr>
-                            <td><input type="password" name="password" id="password" value="<?=@$_POST['password']?>" placeholder="Password"></td>
-                        </tr><tr>
-                            <td><span class="pesan-error"><?=@$pesan_error['password']?></span></td>
-                        </tr><tr>
-                            <td><input type="submit" value="Login"> <input type="reset" value="Reset"></td>
-                        </tr>
-                    </table>
-                </form>
+                <?php
+                if (!empty($_POST)) {
+                    login_validation();
+                    if (!empty($pesan_error)) include 'includes/login-content.php';
+                } else include 'includes/login-content.php';
+                ?>
             </div>
         </div>
         <div class="kanan">
