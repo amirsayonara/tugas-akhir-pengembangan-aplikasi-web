@@ -1,0 +1,101 @@
+* {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0px;
+    background-color: #f6f6f6;
+}
+
+.konten, .konten-utama {
+    width: 900px;
+    margin: auto;
+}
+
+header {
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.konten-utama {
+    background-color: white;
+    padding: 5px 0;
+    margin-top: 85px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+header, footer {
+    background-color: #040492;
+    overflow: hidden;
+}
+
+header {
+    box-shadow: rgba(0, 0, 0, 0.14) 0px 0px 4px 2px;
+}
+
+header h1 {
+    margin: 0px 10px 0px 10px;
+    float: left;
+    color: white;
+}
+
+header nav {
+    float: right!important;
+}
+
+h2 {
+    margin: 0px;
+}
+
+header nav, footer {
+    padding: 10px 0;
+}
+
+footer p {
+    margin: 0px;
+    color: white;
+    text-align: center;
+}
+
+header ul {
+    margin: 0px;
+    padding: 5px 0px;
+}
+
+header li {
+    display: inline;
+}
+
+header li a {
+    padding: 8px;
+    border: 1px solid white;
+    background-color: #0043ff;
+    border-radius: 3px;
+    text-decoration: none;
+    color: white;
+    transition: background 0.8s;
+}
+
+header li a:hover, .dipilih {
+    background-color: yellow;
+    color: blue;
+    cursor: pointer;
+}
+
+.artikel {
+    margin: 10px;
+}
+
+.artikel h2 {
+    border-bottom: 1px solid #244f9d;
+    padding-bottom: 10px;
+}
