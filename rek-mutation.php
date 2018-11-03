@@ -83,8 +83,8 @@
                             </tr>
                             <?php $no = 1;
                             foreach ($mutasi as $x) {
-                                if ($x['rekening_asal']==$_POST['nomor-rekening'] & $x['rekening_tujuan']!=false) $ket = "Transfer ke rekening ".$x['rekening_tujuan'];
-                                else if ($x['rekening_tujuan']==$_POST['nomor-rekening']) $ket = "Terima transfer dari rekening ".$x['rekening_asal'];
+                                if ($x['rekening_asal']==$_POST['nomor-rekening'] & $x['rekening_tujuan']!=false) $ket = 'Transfer ke rekening '.$x['rekening_tujuan'].'atas nama '.info_rekening($x['rekening_tujuan'])['nama'];
+                                else if ($x['rekening_tujuan']==$_POST['nomor-rekening']) $ket = 'Terima transfer dari rekening '.$x['rekening_asal'].'atas nama '.info_rekening($x['rekening_asal'])['nama'];
                                 else $ket = '';
                                 echo "<tr><td>$no</td><td>{$x['waktu']}</td><td>{$x['keterangan']}</td><td>{$x['nominal']}</td><td>$ket</td></tr>";
                                 $no++;
