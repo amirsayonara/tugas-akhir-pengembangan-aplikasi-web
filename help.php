@@ -1,3 +1,4 @@
+<?php include 'includes/api.php'; ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -13,8 +14,12 @@
             <h1>C07 Net Banking</h1>
             <nav>
                 <ul>
-                    <li><a href=".">Halaman Depan</a></li>
-                    <li><a class="dipilih">Bantuan</a></li>
+                    <li><a href=".">Beranda</a> |</li>
+                    <li><a class="dipilih">Bantuan</a>
+                    <?php if (isset($_SESSION['nama-pengguna'])) { ?>
+                    |</li>
+                    <li><a href="logout">Logout</a></li> <?php } else { ?>
+                    </li><?php } ?>
                 </ul>
             </nav>
         </div>
@@ -27,6 +32,7 @@
                     <li>Masuk</li>
                     <li>Informasi Rekening</li>
                     <li>Transfer</li>
+                    <li>Manajemen Pengguna</li>
                 </ul>
             </div>
         </div>

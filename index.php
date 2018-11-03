@@ -14,8 +14,8 @@
             <h1>C07 Net Banking</h1>
             <nav>
                 <ul>
-                    <li><a class="dipilih">Halaman Depan</a></li>
-                    <li><a href="help">Bantuan</a></li>
+                    <li><a class="dipilih">Beranda</a> |</li>
+                    <li><a href="help">Bantuan </a> |</li>
                     <li><a href="logout">Logout</a></li>
                 </ul>
             </nav>
@@ -35,6 +35,19 @@
                         </tr>
                     </table>
                 </div>
+            </div>
+            <hr>
+            <div class="artikel">
+                <ul>
+                    <?php if (pengguna()['jenis_pengguna']=='0') {?>
+                    <li>Manajemen Pengguna</li>
+                    <?php } else {?>
+                    <li>Informasi Rekening</li>
+                    <li>Mutasi Rekening</li>
+                    <li>Transfer</li>
+                    <li>Manajemen Pengguna</li>
+                    <?php }?>
+                </ul>
             </div>
         </div>
         <div class="kanan">

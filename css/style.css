@@ -83,19 +83,23 @@ header li {
     display: inline;
 }
 
-header li a {
-    padding: 8px;
-    border: 1px solid white;
-    background-color: #0043ff;
-    border-radius: 3px;
-    text-decoration: none;
+nav ul li {
     color: white;
-    transition: background 0.8s;
+}
+
+header li a {
+    /*padding: 8px;*/
+    /*border: 1px solid white;
+    /*background-color: #0043ff;*/
+    /*border-radius: 3px;*/
+    text-decoration: none;
+    color: orange;
+    transition: color 0.8s;
 }
 
 header li a:hover, .dipilih {
-    background-color: yellow;
-    color: blue;
+    /*background-color: yellow;*/
+    color: white;
     cursor: pointer;
 }
 
