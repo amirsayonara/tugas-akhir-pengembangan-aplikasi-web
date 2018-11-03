@@ -4,7 +4,7 @@
 
 body {
     margin: 0px;
-    background-color: #f6f6f6;
+    background-color: #e7e7e7;
 }
 
 .konten, .konten-utama {
@@ -13,10 +13,11 @@ body {
 }
 
 header {
-    padding: 10px 0;
+    padding: 15px 0;
     position: fixed;
     top: 0;
     width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.14) 0px 0px 4px 2px;
 }
 
 footer {
@@ -26,20 +27,27 @@ footer {
 }
 
 .konten-utama {
-    background-color: white;
     padding: 5px 0;
-    margin-top: 85px;
-    margin-bottom: 10px;
-    border-radius: 5px;
+    margin-top: 90px;
+    margin-bottom: 70px;
+    overflow: hidden;
+}
+
+.kiri {
+    float: left;
+    width: 29%;
+}
+.kanan {
+    float: right;
+    width: 69%;
+}
+.kiri, .kanan {
+    background-color: white;
 }
 
 header, footer {
     background-color: #040492;
     overflow: hidden;
-}
-
-header {
-    box-shadow: rgba(0, 0, 0, 0.14) 0px 0px 4px 2px;
 }
 
 header h1 {
@@ -98,4 +106,44 @@ header li a:hover, .dipilih {
 .artikel h2 {
     border-bottom: 1px solid #244f9d;
     padding-bottom: 10px;
+}
+
+.kiri .artikel h2 {
+    text-align: center;
+    border: 0;
+}
+
+.pesan-error {
+    color: red;
+}
+
+input[type="text"], input[type="password"] {
+    width: 200px;
+    height: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px #aeaeae solid;
+    margin-top: 5px;
+}
+input[type="text"]:focus, input[type="password"]:focus {
+    border-color:#66afe9;
+    outline: 0;
+}
+input[type="submit"], input[type="reset"] {
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
+    border: 1px #cecece solid;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+form {
+    border-radius: 5px;
+    width: fit-content;
+    margin: auto;
+}
+td ul {
+    margin: 0px;
+    padding: 0px 20px;
 }

@@ -20,9 +20,17 @@
         </div>
     </header>
     <div class="konten-utama">
-        <div class="artikel">
-            <h2>Halaman Depan</h2>
-            <p>Selamat datang di C07 Internet Banking</p>
+        <div class="kiri">
+            <div class="artikel">
+                <h2>Halaman Depan</h2>
+                <p>Selamat datang di C07 Internet Banking</p>
+            </div>
+        </div>
+        <div class="kanan">
+            <div class="artikel">
+                <h2>Halaman Depan</h2>
+                <p>Selamat datang di C07 Internet Banking</p>
+            </div>
         </div>
     </div>
     <footer>
