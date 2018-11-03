@@ -1,4 +1,4 @@
-<?php include 'includes/api.php'; require 'includes/sudah-masuk.php' ?>
+<?php include 'includes/api.php'; require 'includes/sudah-masuk-customer.php' ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
