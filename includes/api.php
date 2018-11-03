@@ -4,12 +4,19 @@ session_start();
 $conn = new PDO('mysql:host=localhost;dbname=banking', 'root', '');
 $pesan_error = array();
 
+function validasi_masukan_wajib(&$pesan_error, $name) {
+    if (@$_POST[$name]=='') $pesan_error[$name] = 'Harus diisi';
+}
+
 function login_validation() {
+    $username = @$_POST['username'];
+    $password = @$_POST['password'];
+    global $pesan_error;
+    validasi_masukan_wajib($pesan_error, 'username');
+    validasi_masukan_wajib($pesan_error, 'password');
+    if (!empty($pesan_error)) return;
     try {
         global $conn;
-        global $pesan_error;
-        $username = @$_POST['username'];
-        $password = @$_POST['password'];
         $q = $conn->prepare("SELECT * FROM akun_pengguna WHERE nama_pengguna=:username");
         $q->bindValue(':username', $username);
         $q->execute();
