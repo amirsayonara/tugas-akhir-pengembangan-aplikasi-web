@@ -53,6 +53,19 @@
         <div class="kanan">
             <div class="artikel">
                 <h2>Manajemen Pengguna</h2>
+                <?php if (@$_GET['edit']) {?>
+                <h3>Edit Akun dan Profil</h3><?php
+                    if (!empty($_POST)) {
+                        save_user_management_validation();
+                        if (!empty($pesan_error)) { 
+                            include 'includes/edit-user-profile-content-error.php';
+                        } else {
+                            header('Location: user-management');
+                        }
+                    } else {
+                        include 'includes/edit-user-profile-content.php';
+                    }
+                } else {?>
                 <h3>Akun dan Profil</h3>
                 <table>
                     <tr>
@@ -74,7 +87,8 @@
                         <td>E-mail</td><td>: <a href="mailto:<?=pengguna()['email']?>"><?=pengguna()['email']?></a></td>
                     </tr>
                 </table>
-                <button>Edit Akun dan Profil</button>
+                <button onclick="location.href='user-management?edit=true'">Edit Akun dan Profil</button>
+                <?php } ?>
             </div>
         </div>
     </div>

@@ -109,4 +109,66 @@ function transfer_validation() {
     $q->execute();
 }
 
+function validasi_masukan_alfanumerik(&$pesan_error, $name) {
+    $pattern = "/^[a-zA-Z0-9]+$/";
+    if (@$_POST[$name]!='' & !preg_match($pattern, @$_POST[$name])) $pesan_error[$name] = 'Hanya boleh memasukkan angka atau huruf';
+}
+
+function validasi_masukan_minimal(&$pesan_error, $name, $panjang) {
+    if (strlen(@$_POST[$name])<$panjang) $pesan_error[$name] = 'Panjang minimal harus '.$panjang.' karakter';
+}
+
+function validasi_masukan_sama(&$pesan_error, $name1, $name2, $nama) {
+    if (@$_POST[$name1]!=@$_POST[$name2]) $pesan_error[$name1] = 'Masukan harus sama dengan '.$nama;
+}
+
+function validasi_masukan_alfabet(&$pesan_error, $name) {
+    $pattern = "/^[a-z A-Z'-]+$/";
+    if (@$_POST[$name]!='' & !preg_match($pattern, @$_POST[$name])) $pesan_error[$name] = 'Hanya boleh memasukkan alfabet';
+}
+
+function validasi_masukan_panjang(&$pesan_error, $name, $min, $max) {
+    if (strlen(@$_POST[$name])<$min) $pesan_error[$name] = 'Panjang kurang dari '.$min.' digit';
+    else if (strlen(@$_POST[$name])>$max) $pesan_error[$name] = 'Panjang melebihi '.$max.' digit';
+}
+
+function validasi_masukan_email(&$pesan_error, $name) {
+    $pattern = "/^([A-z0-9]+|([A-z0-9]+([._])[A-z0-9]+)+)@([A-z0-9]+[._][A-z0-9]{1,})+$/";
+    if (@$_POST[$name]!='' & !preg_match($pattern, @$_POST[$name])) $pesan_error[$name] = 'E-mail tidak valid';
+}
+
+function save_user_management_validation() {
+    global $pesan_error;
+    global $conn;
+    if ($_POST['nama-pengguna']!=pengguna()['nama_pengguna']) {
+        $q = $conn->prepare("SELECT * FROM akun_pengguna WHERE nama_pengguna='{$_POST['nama-pengguna']}'");
+        $q->execute();
+        if (@$q->fetchAll()) $pesan_error['nama-pengguna'] = 'Nama pengguna sudah digunakan';
+    }
+    validasi_masukan_alfanumerik($pesan_error, 'nama-pengguna');
+    if ($_POST['sandi']!='') {
+        validasi_masukan_minimal($pesan_error, 'sandi', 4);
+        validasi_masukan_sama($pesan_error, 'konfirmasi-sandi', 'sandi', 'Sandi');
+    }
+    validasi_masukan_wajib($pesan_error, 'nama-pengguna');
+    validasi_masukan_alfabet($pesan_error, 'nama');
+    validasi_masukan_wajib($pesan_error, 'nama');
+    validasi_masukan_panjang($pesan_error, 'nomor-hp', 10, 15);
+    validasi_masukan_numerik($pesan_error, 'nomor-hp');
+    validasi_masukan_wajib($pesan_error, 'nomor-hp');
+    validasi_masukan_email($pesan_error, 'email');
+    validasi_masukan_wajib($pesan_error, 'email');
+    if (!empty($pesan_error)) return;
+    $id_pengguna = pengguna()['id_pengguna'];
+    $q = $conn->prepare("UPDATE akun_pengguna SET nama_pengguna='{$_POST['nama-pengguna']}' WHERE id_pengguna='$id_pengguna'");
+    $q->execute();
+    $_SESSION['nama-pengguna'] = $_POST['nama-pengguna'];
+    if ($_POST['sandi']!='') {
+        $q = $conn->prepare("UPDATE akun_pengguna SET sandi=SHA2('{$_POST['sandi']}', 0) WHERE id_pengguna='$id_pengguna'");
+        $q->execute();
+    }
+    $q = $conn->prepare("UPDATE pengguna SET nama='{$_POST['nama']}', alamat='{$_POST['alamat']}', nomor_hp='{$_POST['nomor-hp']}', email='{$_POST['email']}' WHERE id='$id_pengguna'");
+    $q->execute();
+}
+
 ?>

@@ -121,7 +121,7 @@ header li a:hover, .dipilih {
     color: red;
 }
 
-input[type="text"], input[type="password"], select {
+input[type="text"], input[type="password"], select, textarea {
     width: 200px;
     height: 15px;
     padding: 10px;
@@ -129,10 +129,13 @@ input[type="text"], input[type="password"], select {
     border: 1px #aeaeae solid;
     margin-top: 5px;
 }
+textarea {
+    height: 40px;
+}
 select, option {
     height: 40px;
 }
-input[type="text"]:focus, input[type="password"]:focus, select:focus {
+input[type="text"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
     border-color:#66afe9;
     outline: 0;
 }
@@ -155,6 +158,6 @@ td ul {
     padding: 0px 20px;
 }
 
-.info-pengguna {
+.info-pengguna, .pesan-mini {
     font-size: 9.5pt;
 }
