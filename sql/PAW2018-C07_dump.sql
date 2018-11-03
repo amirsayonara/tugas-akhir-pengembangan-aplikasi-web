@@ -62,9 +62,7 @@ CREATE TABLE `jenis_transaksi` (
 
 INSERT INTO `jenis_transaksi` (`id`, `keterangan`) VALUES
 ('0', 'SETORAN AWAL'),
-('1', 'MENABUNG'),
-('2', 'TARIK TUNAI'),
-('3', 'TRANSFER');
+('1', 'TRANSFER');
 
 -- --------------------------------------------------------
 
