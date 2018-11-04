@@ -110,14 +110,16 @@
                                 <?php
                                 echo "<button onclick=\"location.href='user-management?action=edit-profile&id={$_GET['id']}'\">Edit Profil Pengguna</button>";
                                 if (count($pengguna_rinci['rekening']) > 0) {
-                                    echo '<hr><h4>Rekening</h4>';
+                                    echo '<hr><h4>Rekening</h4><ul>';
                                     foreach ($pengguna_rinci['rekening'] as $x) {
                                         $hapus = '';
-                                        if (count($pengguna_rinci['rekening']) > 1) $hapus = "<a href=\"user-management?action=delete-bank-account&account-number={$x['nomor_rekening']}\">Hapus</a>";
-                                        echo "<li>{$x['nomor_rekening']} $hapus</li>";
+                                        if (count($pengguna_rinci['rekening']) > 1) $hapus = " - <a href=\"user-management?action=delete-bank-account&account-number={$x['nomor_rekening']}\">Hapus</a>";
+                                        echo "<li>{$x['nomor_rekening']} - [Rp ".info_rekening($x['nomor_rekening'])['saldo']."]$hapus</li>";
                                     }
+                                    echo '</ul>';
+                                    echo "<button onclick=\"location.href='user-management?action=add-bank-account&id={$_GET['id']}'\">Tambah Tekening</button>";
                                 }
-                                echo '<hr><h3>Tindakan</h3>';
+                                echo '<hr><h4>Tindakan</h4>';
                                 echo "<button onclick=\"location.href='user-management?action=delete-user&id={$_GET['id']}'\">Hapus Pengguna</button><br>";
                             }
                             echo '<hr>';
