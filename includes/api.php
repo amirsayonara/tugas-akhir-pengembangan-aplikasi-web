@@ -181,4 +181,26 @@ function save_user_management_validation() {
     $q->execute();
 }
 
+function list_pengguna() {
+    global $conn;
+    $q = $conn->prepare('SELECT * FROM pengguna');
+    $q->execute();
+    return @$q->fetchAll();
+}
+
+function pengguna_rinci($id) {
+    $re = array();
+    global $conn;
+    $q = $conn->prepare("SELECT * FROM pengguna WHERE id='$id'");
+    $q->execute();
+    $re['profil'] = @$q->fetchAll()[0];
+    $q = $conn->prepare("SELECT * FROM akun_pengguna JOIN jenis_pengguna ON jenis_pengguna.id=akun_pengguna.jenis_pengguna WHERE id_pengguna='$id'");
+    $q->execute();
+    $re['akun-pengguna'] = @$q->fetchAll();
+    $q = $conn->prepare("SELECT * FROM rekening WHERE id_pengguna='$id'");
+    $q->execute();
+    $re['rekening'] = @$q->fetchAll();
+    return $re;
+}
+
 ?>

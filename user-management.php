@@ -14,7 +14,7 @@
             <h1>C07 Net Banking</h1>
             <nav>
                 <ul>
-                    <li><a class="dipilih">Beranda</a> |</li>
+                    <li><a href=".">Beranda</a> |</li>
                     <li><a href="help">Bantuan </a> |</li>
                     <li><a href="logout">Logout</a></li>
                 </ul>
@@ -53,42 +53,117 @@
         <div class="kanan">
             <div class="artikel">
                 <h2>Manajemen Pengguna</h2>
-                <?php if (@$_GET['edit']) {?>
-                <h3>Edit Akun dan Profil</h3><?php
-                    if (!empty($_POST)) {
-                        save_user_management_validation();
-                        if (!empty($pesan_error)) { 
-                            include 'includes/edit-user-profile-content-error.php';
-                        } else {
-                            header('Location: user-management');
-                        }
-                    } else {
-                        include 'includes/edit-user-profile-content.php';
+                <?php if (pengguna()['jenis_pengguna']==0) {?>
+                    <?php switch (@$_GET['action']) {
+                        default: ?>
+                            <h3>Detail Pengguna</h3>
+                            <form>
+                                <table>
+                                    <tr>
+                                        <td><label for="id">Pilih pengguna</label></td>
+                                        <td>
+                                            <select name="id" id="id">
+                                                <option value="-1">---</option>
+                                                <?php foreach (list_pengguna() as $x) {
+                                                    $selected = '';
+                                                    if ($x['id']==@$_GET['id']) $selected = 'selected';
+                                                    echo "<option $selected value=\"{$x['id']}\">{$x['nama']} - {$x['email']}</option>";
+                                                }?>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td><td><input type="submit" value="Pilih"></td>
+                                    </tr>
+                                </table>
+                            </form>
+                            <?php
+                            $pengguna_rinci = pengguna_rinci(@$_GET['id']);
+                            if ($pengguna_rinci['profil']) {
+                                echo '<hr>';
+                                echo '<h4>Akun Pengguna</h4>';
+                                echo '<ul>';
+                                foreach ($pengguna_rinci['akun-pengguna'] as $x) {
+                                    $hapus = '';
+                                    if (count($pengguna_rinci['akun-pengguna']) > 1) $hapus = " - <a href=\"user-management?action=delete-account&username={$x['nama_pengguna']}\">Hapus</a>";
+                                    echo "<li>{$x['nama_pengguna']} - [{$x['keterangan']}]$hapus</li>";
+                                }
+                                echo '</ul>';
+                                echo "<button onclick=\"location.href='user-management?action=add-accout-customer&id={$_GET['id']}'\">Tambah Akun Customer</button>";
+                                echo "<button onclick=\"location.href='user-management?action=add-accout-admin&id={$_GET['id']}'\">Tambah Akun Admin</button>";
+                                echo '<hr><h4>Profil</h4>';
+                                ?>
+                                <table>
+                                    <tr>
+                                        <td>Nama</td><td>: <?=$pengguna_rinci['profil']['nama']?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alamat</td><td>: <?=$pengguna_rinci['profil']['alamat']?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nomor HP</td><td>: <?=$pengguna_rinci['profil']['nomor_hp']?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>E-mail</td><td>: <?=$pengguna_rinci['profil']['email']?></td>
+                                    </tr>
+                                </table>
+                                <?php
+                                echo "<button onclick=\"location.href='user-management?action=edit-profile&id={$_GET['id']}'\">Edit Profil Pengguna</button>";
+                                if (count($pengguna_rinci['rekening']) > 0) {
+                                    echo '<hr><h4>Rekening</h4>';
+                                    foreach ($pengguna_rinci['rekening'] as $x) {
+                                        $hapus = '';
+                                        if (count($pengguna_rinci['rekening']) > 1) $hapus = "<a href=\"user-management?action=delete-bank-account&account-number={$x['nomor_rekening']}\">Hapus</a>";
+                                        echo "<li>{$x['nomor_rekening']} $hapus</li>";
+                                    }
+                                }
+                                echo '<hr><h3>Tindakan</h3>';
+                                echo "<button onclick=\"location.href='user-management?action=delete-user&id={$_GET['id']}'\">Hapus Pengguna</button><br>";
+                            }
+                            echo '<hr>';
+                            echo "<button onclick=\"location.href='user-management?action=add-user-customer'\">Tambah Pengguna Customer</button>";
+                            echo "<button onclick=\"location.href='user-management?action=add-user-admin'\">Tambah Pengguna Admin</button>";
+                        break;
                     }
-                } else {?>
-                <h3>Akun dan Profil</h3>
-                <table>
-                    <tr>
-                        <td>Nama Pengguna</td><td>: <?=pengguna()['nama_pengguna']?></td>
-                    </tr>
-                    <tr>
-                        <td>Jenis Pengguna</td><td>: <?=pengguna()['keterangan']?></td>
-                    </tr>
-                    <tr>
-                        <td>Nama</td><td>: <?=pengguna()['nama']?></td>
-                    </tr>
-                    <tr>
-                        <td>Alamat</td><td>: <?=pengguna()['alamat']?></td>
-                    </tr>
-                    <tr>
-                        <td>Nomor HP</td><td>: <?=pengguna()['nomor_hp']?></td>
-                    </tr>
-                    <tr>
-                        <td>E-mail</td><td>: <a href="mailto:<?=pengguna()['email']?>"><?=pengguna()['email']?></a></td>
-                    </tr>
-                </table>
-                <button onclick="location.href='user-management?edit=true'">Edit Akun dan Profil</button>
-                <?php } ?>
+                    ?>
+                <?php } else {
+                    if (@$_GET['edit']) {?>
+                    <h3>Edit Akun dan Profil</h3><?php
+                        if (!empty($_POST)) {
+                            save_user_management_validation();
+                            if (!empty($pesan_error)) { 
+                                include 'includes/edit-user-profile-content-error.php';
+                            } else {
+                                header('Location: user-management');
+                            }
+                        } else {
+                            include 'includes/edit-user-profile-content.php';
+                        }
+                    } else {?>
+                    <h3>Akun dan Profil</h3>
+                    <table>
+                        <tr>
+                            <td>Nama Pengguna</td><td>: <?=pengguna()['nama_pengguna']?></td>
+                        </tr>
+                        <tr>
+                            <td>Jenis Pengguna</td><td>: <?=pengguna()['keterangan']?></td>
+                        </tr>
+                        <tr>
+                            <td>Nama</td><td>: <?=pengguna()['nama']?></td>
+                        </tr>
+                        <tr>
+                            <td>Alamat</td><td>: <?=pengguna()['alamat']?></td>
+                        </tr>
+                        <tr>
+                            <td>Nomor HP</td><td>: <?=pengguna()['nomor_hp']?></td>
+                        </tr>
+                        <tr>
+                            <td>E-mail</td><td>: <a href="mailto:<?=pengguna()['email']?>"><?=pengguna()['email']?></a></td>
+                        </tr>
+                    </table>
+                    <button onclick="location.href='user-management?edit=true'">Edit Akun dan Profil</button>
+                    <?php }
+                } ?>
             </div>
         </div>
     </div>

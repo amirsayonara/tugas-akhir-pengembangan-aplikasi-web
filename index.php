@@ -40,7 +40,7 @@
             <div class="artikel">
                 <ul>
                     <?php if (pengguna()['jenis_pengguna']=='0') {?>
-                    <li>Manajemen Pengguna</li>
+                    <li><a href="user-management">Manajemen Pengguna</a></li>
                     <?php } else {?>
                     <li><a href="rek-info">Informasi Rekening</a></li>
                     <li><a href="rek-mutation">Mutasi Rekening</a></li>
