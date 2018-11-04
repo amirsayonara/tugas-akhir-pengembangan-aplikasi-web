@@ -141,12 +141,12 @@ CREATE TABLE `transaksi` (
   `id` varchar(25) NOT NULL PRIMARY KEY,
   `waktu` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `jenis_transaksi` char(2) NOT NULL,
-  `rekening_asal` varchar(25) NOT NULL,
+  `rekening_asal` varchar(25) DEFAULT NULL,
   `rekening_tujuan` varchar(25) DEFAULT NULL,
   `nominal` decimal(12,2) NOT NULL,
   FOREIGN KEY(jenis_transaksi) REFERENCES jenis_transaksi(id) ON UPDATE CASCADE,
-  FOREIGN KEY(rekening_asal) REFERENCES rekening(nomor_rekening) ON UPDATE CASCADE,
-  FOREIGN KEY(rekening_tujuan) REFERENCES rekening(nomor_rekening) ON UPDATE CASCADE
+  FOREIGN KEY(rekening_asal) REFERENCES rekening(nomor_rekening) ON DELETE SET NULL ON UPDATE CASCADE,
+  FOREIGN KEY(rekening_tujuan) REFERENCES rekening(nomor_rekening) ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
