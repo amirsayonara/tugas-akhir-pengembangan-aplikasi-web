@@ -17,13 +17,10 @@ function login_validation() {
     if (!empty($pesan_error)) return;
     try {
         global $conn;
-        $q = $conn->prepare("SELECT * FROM akun_pengguna WHERE nama_pengguna=:username");
-        $q->bindValue(':username', $username);
+        $q = $conn->prepare("SELECT * FROM pengguna WHERE nama_pengguna='$username' AND aktif='1'");
         $q->execute();
         if ($q->rowCount() > 0) {
-            $q = $conn->prepare("SELECT * FROM akun_pengguna WHERE nama_pengguna=:username AND sandi=SHA2(:password, 0)");
-            $q->bindValue(':username', $username);
-            $q->bindValue(':password', $password);
+            $q = $conn->prepare("SELECT * FROM pengguna WHERE nama_pengguna='$username' AND sandi=SHA2('$password', 0) AND aktif='1'");
             $q->execute();
             if ($q->rowCount() > 0) {
                 $_SESSION['nama-pengguna'] = $q->fetchAll()[0]['nama_pengguna'];
@@ -37,21 +34,21 @@ function login_validation() {
 
 function pengguna() {
     global $conn;
-    $q = $conn->prepare("SELECT * FROM akun_pengguna a JOIN jenis_pengguna j ON a.jenis_pengguna=j.id JOIN pengguna p ON a.id_pengguna=p.id WHERE a.nama_pengguna='{$_SESSION['nama-pengguna']}'");
+    $q = $conn->prepare("SELECT * FROM pengguna p JOIN jenis_pengguna j ON p.jenis_pengguna=j.id WHERE p.nama_pengguna='{$_SESSION['nama-pengguna']}'");
     $q->execute();
     return @$q->fetchAll()[0];
 }
 
 function list_rekening($nama_pengguna) {
     global $conn;
-    $q = $conn->prepare("SELECT * FROM rekening WHERE id_pengguna=(SELECT id_pengguna FROM akun_pengguna WHERE nama_pengguna='$nama_pengguna')");
+    $q = $conn->prepare("SELECT * FROM rekening WHERE nama_pengguna='$nama_pengguna' AND aktif='1'");
     $q->execute();
     return @$q->fetchAll();
 }
 
 function info_rekening($nomor_rekening) {
     global $conn;
-    $q = $conn->prepare("SELECT *, IFNULL((SELECT SUM(nominal) FROM transaksi WHERE rekening_asal=r.nomor_rekening AND jenis_transaksi='0'), 0) + IFNULL((SELECT SUM(nominal) FROM transaksi WHERE rekening_tujuan=r.nomor_rekening AND jenis_transaksi='1'), 0) - IFNULL((SELECT SUM(nominal) FROM transaksi WHERE rekening_asal=r.nomor_rekening AND jenis_transaksi='1'), 0)'saldo' FROM rekening r JOIN pengguna p ON r.id_pengguna=p.id WHERE r.nomor_rekening='$nomor_rekening'");
+    $q = $conn->prepare("SELECT *, IFNULL((SELECT SUM(nominal) FROM transaksi WHERE rekening_asal=r.nomor_rekening AND jenis_transaksi='0'), 0) + IFNULL((SELECT SUM(nominal) FROM transaksi WHERE rekening_tujuan=r.nomor_rekening AND jenis_transaksi='1'), 0) - IFNULL((SELECT SUM(nominal) FROM transaksi WHERE rekening_asal=r.nomor_rekening AND jenis_transaksi='1'), 0)'saldo' FROM rekening r JOIN pengguna p ON r.nama_pengguna=p.nama_pengguna WHERE r.nomor_rekening='$nomor_rekening'");
     $q->execute();
     return @$q->fetchAll()[0];
 }
@@ -90,11 +87,11 @@ function transfer_validation() {
     $cek_saldo = info_rekening($_POST['nomor-rekening'])['saldo'];
     if ($cek_saldo==false) $pesan_error['nomor-rekening'] = 'Anda belum memilih rekening';
     global $conn;
-    $q = $conn->prepare("SELECT * FROM rekening WHERE nomor_rekening='{$_POST['nomor-rekening-tujuan']}'");
+    $q = $conn->prepare("SELECT * FROM rekening WHERE nomor_rekening='{$_POST['nomor-rekening-tujuan']}' AND aktif='1'");
     $q->execute();
     @$tmp = $q->fetchAll();
     if ($tmp) {
-        if ($tmp[0]['id_pengguna']==pengguna()['id_pengguna']) $pesan_error['nomor-rekening-tujuan'] = 'Tidak dapat transfer ke rekening anda sendiri';
+        if ($tmp[0]['nama_pengguna']==pengguna()['nama_pengguna']) $pesan_error['nomor-rekening-tujuan'] = 'Tidak dapat transfer ke rekening anda sendiri';
     } else $pesan_error['nomor-rekening-tujuan'] = 'Nomor rekening tidak valid';
     validasi_masukan_numerik($pesan_error, 'nominal');
     validasi_masukan_wajib($pesan_error, 'nominal');
@@ -141,7 +138,7 @@ function save_user_management_validation() {
     global $pesan_error;
     global $conn;
     if ($_POST['nama-pengguna']!=pengguna()['nama_pengguna']) {
-        $q = $conn->prepare("SELECT * FROM akun_pengguna WHERE nama_pengguna='{$_POST['nama-pengguna']}'");
+        $q = $conn->prepare("SELECT * FROM pengguna WHERE nama_pengguna='{$_POST['nama-pengguna']}' AND aktif='1'");
         $q->execute();
         if (@$q->fetchAll()) $pesan_error['nama-pengguna'] = 'Nama pengguna sudah digunakan';
     }
@@ -169,15 +166,16 @@ function save_user_management_validation() {
     validasi_masukan_email($pesan_error, 'email');
     validasi_masukan_wajib($pesan_error, 'email');
     if (!empty($pesan_error)) return;
-    $id_pengguna = pengguna()['id_pengguna'];
-    $q = $conn->prepare("UPDATE akun_pengguna SET nama_pengguna='{$_POST['nama-pengguna']}' WHERE id_pengguna='$id_pengguna'");
+    $nama_pengguna = pengguna()['nama_pengguna'];
+    $q = $conn->prepare("UPDATE pengguna SET nama_pengguna='{$_POST['nama-pengguna']}' WHERE nama_pengguna='$nama_pengguna' AND aktif='1'");
     $q->execute();
     $_SESSION['nama-pengguna'] = $_POST['nama-pengguna'];
+    $nama_pengguna = pengguna()['nama_pengguna'];
     if ($_POST['sandi']!='') {
-        $q = $conn->prepare("UPDATE akun_pengguna SET sandi=SHA2('{$_POST['sandi']}', 0) WHERE id_pengguna='$id_pengguna'");
+        $q = $conn->prepare("UPDATE pengguna SET sandi=SHA2('{$_POST['sandi']}', 0) WHERE nama_pengguna='$nama_pengguna' AND aktif='1'");
         $q->execute();
     }
-    $q = $conn->prepare("UPDATE pengguna SET nama='{$_POST['nama']}', alamat='{$_POST['alamat']}', nomor_hp='{$_POST['nomor-hp']}', email='{$_POST['email']}' WHERE id='$id_pengguna'");
+    $q = $conn->prepare("UPDATE pengguna SET nama='{$_POST['nama']}', alamat='{$_POST['alamat']}', nomor_hp='{$_POST['nomor-hp']}', email='{$_POST['email']}' WHERE nama_pengguna='$nama_pengguna' AND aktif='1'");
     $q->execute();
 }
 
@@ -188,16 +186,13 @@ function list_pengguna() {
     return @$q->fetchAll();
 }
 
-function pengguna_rinci($id) {
+function pengguna_rinci($nama_pengguna) {
     $re = array();
     global $conn;
-    $q = $conn->prepare("SELECT * FROM pengguna WHERE id='$id'");
+    $q = $conn->prepare("SELECT * FROM pengguna JOIN jenis_pengguna ON jenis_pengguna.id=pengguna.jenis_pengguna WHERE nama_pengguna='$nama_pengguna'");
     $q->execute();
-    $re['profil'] = @$q->fetchAll()[0];
-    $q = $conn->prepare("SELECT * FROM akun_pengguna JOIN jenis_pengguna ON jenis_pengguna.id=akun_pengguna.jenis_pengguna WHERE id_pengguna='$id'");
-    $q->execute();
-    $re['akun-pengguna'] = @$q->fetchAll();
-    $q = $conn->prepare("SELECT * FROM rekening WHERE id_pengguna='$id'");
+    $re['pengguna'] = @$q->fetchAll()[0];
+    $q = $conn->prepare("SELECT * FROM rekening WHERE nama_pengguna='$nama_pengguna' AND aktif='1'");
     $q->execute();
     $re['rekening'] = @$q->fetchAll();
     return $re;

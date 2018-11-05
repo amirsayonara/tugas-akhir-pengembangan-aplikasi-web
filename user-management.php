@@ -60,14 +60,14 @@
                             <form>
                                 <table>
                                     <tr>
-                                        <td><label for="id">Pilih pengguna</label></td>
+                                        <td><label for="nama-pengguna">Pilih pengguna</label></td>
                                         <td>
-                                            <select name="id" id="id">
+                                            <select name="nama-pengguna" id="nama-pengguna">
                                                 <option value="-1">---</option>
                                                 <?php foreach (list_pengguna() as $x) {
                                                     $selected = '';
-                                                    if ($x['id']==@$_GET['id']) $selected = 'selected';
-                                                    echo "<option $selected value=\"{$x['id']}\">{$x['nama']} - {$x['email']}</option>";
+                                                    if ($x['nama_pengguna']==@$_GET['nama-pengguna']) $selected = 'selected';
+                                                    echo "<option $selected value=\"{$x['nama_pengguna']}\">{$x['nama']} - {$x['email']}</option>";
                                                 }?>
                                             </select>
                                         </td>
@@ -78,37 +78,29 @@
                                 </table>
                             </form>
                             <?php
-                            $pengguna_rinci = pengguna_rinci(@$_GET['id']);
-                            if ($pengguna_rinci['profil']) {
-                                echo '<hr>';
-                                echo '<h4>Akun Pengguna</h4>';
-                                echo '<ul>';
-                                foreach ($pengguna_rinci['akun-pengguna'] as $x) {
-                                    $hapus = '';
-                                    if (count($pengguna_rinci['akun-pengguna']) > 1) $hapus = " - <a href=\"user-management?action=delete-account&username={$x['nama_pengguna']}\">Hapus</a>";
-                                    echo "<li>{$x['nama_pengguna']} - [{$x['keterangan']}]$hapus</li>";
-                                }
-                                echo '</ul>';
-                                echo "<button onclick=\"location.href='user-management?action=add-accout-customer&id={$_GET['id']}'\">Tambah Akun Customer</button>";
-                                echo "<button onclick=\"location.href='user-management?action=add-accout-admin&id={$_GET['id']}'\">Tambah Akun Admin</button>";
-                                echo '<hr><h4>Profil</h4>';
+                            $pengguna_rinci = pengguna_rinci(@$_GET['nama-pengguna']);
+                            if ($pengguna_rinci['pengguna']) {
+                                echo '<hr><h4>Pengguna</h4>';
                                 ?>
                                 <table>
                                     <tr>
-                                        <td>Nama</td><td>: <?=$pengguna_rinci['profil']['nama']?></td>
+                                        <td>Nama Pengguna</td><td>: <?=$pengguna_rinci['pengguna']['nama_pengguna']?></td>
                                     </tr>
                                     <tr>
-                                        <td>Alamat</td><td>: <?=$pengguna_rinci['profil']['alamat']?></td>
+                                        <td>Nama</td><td>: <?=$pengguna_rinci['pengguna']['nama']?></td>
                                     </tr>
                                     <tr>
-                                        <td>Nomor HP</td><td>: <?=$pengguna_rinci['profil']['nomor_hp']?></td>
+                                        <td>Alamat</td><td>: <?=$pengguna_rinci['pengguna']['alamat']?></td>
                                     </tr>
                                     <tr>
-                                        <td>E-mail</td><td>: <?=$pengguna_rinci['profil']['email']?></td>
+                                        <td>Nomor HP</td><td>: <?=$pengguna_rinci['pengguna']['nomor_hp']?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>E-mail</td><td>: <?=$pengguna_rinci['pengguna']['email']?></td>
                                     </tr>
                                 </table>
                                 <?php
-                                echo "<button onclick=\"location.href='user-management?action=edit-profile&id={$_GET['id']}'\">Edit Profil Pengguna</button>";
+                                echo "<button onclick=\"location.href='user-management?action=edit-profile&id={$_GET['nama-pengguna']}'\">Edit Profil Pengguna</button>";
                                 if (count($pengguna_rinci['rekening']) > 0) {
                                     echo '<hr><h4>Rekening</h4><ul>';
                                     foreach ($pengguna_rinci['rekening'] as $x) {
@@ -117,10 +109,10 @@
                                         echo "<li>{$x['nomor_rekening']} - [Rp ".info_rekening($x['nomor_rekening'])['saldo']."]$hapus</li>";
                                     }
                                     echo '</ul>';
-                                    echo "<button onclick=\"location.href='user-management?action=add-bank-account&id={$_GET['id']}'\">Tambah Tekening</button>";
+                                    echo "<button onclick=\"location.href='user-management?action=add-bank-account&id={$_GET['nama-pengguna']}'\">Tambah Tekening</button>";
                                 }
                                 echo '<hr><h4>Tindakan</h4>';
-                                echo "<button onclick=\"location.href='user-management?action=delete-user&id={$_GET['id']}'\">Hapus Pengguna</button><br>";
+                                echo "<button onclick=\"location.href='user-management?action=delete-user&id={$_GET['nama-pengguna']}'\">Hapus Pengguna</button><br>";
                             }
                             echo '<hr>';
                             echo "<button onclick=\"location.href='user-management?action=add-user-customer'\">Tambah Pengguna Customer</button>";
