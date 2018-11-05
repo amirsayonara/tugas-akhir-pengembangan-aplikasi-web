@@ -100,7 +100,7 @@
                                     </tr>
                                 </table>
                                 <?php
-                                echo "<button onclick=\"location.href='user-management?action=edit-profile&id={$_GET['nama-pengguna']}'\">Edit Profil Pengguna</button>";
+                                echo "<button onclick=\"location.href='user-management?action=edit-profile&nama-pengguna={$_GET['nama-pengguna']}'\">Edit Profil Pengguna</button>";
                                 if (count($pengguna_rinci['rekening']) > 0) {
                                     echo '<hr><h4>Rekening</h4><ul>';
                                     foreach ($pengguna_rinci['rekening'] as $x) {
@@ -109,10 +109,10 @@
                                         echo "<li>{$x['nomor_rekening']} - [Rp ".info_rekening($x['nomor_rekening'])['saldo']."]$hapus</li>";
                                     }
                                     echo '</ul>';
-                                    echo "<button onclick=\"location.href='user-management?action=add-bank-account&id={$_GET['nama-pengguna']}'\">Tambah Tekening</button>";
+                                    echo "<button onclick=\"location.href='user-management?action=add-bank-account&nama-pengguna={$_GET['nama-pengguna']}'\">Tambah Tekening</button>";
                                 }
                                 echo '<hr><h4>Tindakan</h4>';
-                                echo "<button onclick=\"location.href='user-management?action=delete-user&id={$_GET['nama-pengguna']}'\">Hapus Pengguna</button><br>";
+                                echo "<button onclick=\"location.href='user-management?action=delete-user&nama-pengguna={$_GET['nama-pengguna']}'\">Hapus Pengguna</button><br>";
                             }
                             echo '<hr>';
                             echo "<button onclick=\"location.href='user-management?action=add-user-customer'\">Tambah Pengguna Customer</button>";
