@@ -75,17 +75,18 @@ CREATE TABLE `pengguna` (
   `email` varchar(64) NOT NULL UNIQUE,
   `nama` char(64) NOT NULL,
   `alamat` varchar(254) DEFAULT NULL,
-  `nomor_hp` char(15) NOT NULL UNIQUE
+  `nomor_hp` char(15) NOT NULL UNIQUE,
+  `aktif` enum('1', '0') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `pengguna`
 --
 
-INSERT INTO `pengguna` (`id`, `email`, `nama`, `alamat`, `nomor_hp`) VALUES
-('AB12C-ABCHD-8ABCD-88CAA', 'admin@admin.com', 'NAMA ADMIN', 'ALAMAT ADMIN', '080000000000'),
-('AB12C-ABCHD-8ABCD-88CAB', 'user@user.com', 'NAMA USER', 'ALAMAT USER', '080000000001'),
-('AB12C-ABCHD-8ABCD-88CAC', 'user2@user.com', 'NAMA USER DUA', 'ALAMAT USER 2', '080000000002');
+INSERT INTO `pengguna` (`id`, `email`, `nama`, `alamat`, `nomor_hp`, `aktif`) VALUES
+('AB12C-ABCHD-8ABCD-88CAA', 'admin@admin.com', 'NAMA ADMIN', 'ALAMAT ADMIN', '080000000000', '1'),
+('AB12C-ABCHD-8ABCD-88CAB', 'user@user.com', 'NAMA USER', 'ALAMAT USER', '080000000001', '1'),
+('AB12C-ABCHD-8ABCD-88CAC', 'user2@user.com', 'NAMA USER DUA', 'ALAMAT USER 2', '080000000002', '1');
 
 -- --------------------------------------------------------
 
@@ -120,6 +121,7 @@ INSERT INTO `akun_pengguna` (`nama_pengguna`, `sandi`, `jenis_pengguna`, `id_pen
 CREATE TABLE `rekening` (
   `nomor_rekening` varchar(25) NOT NULL PRIMARY KEY,
   `id_pengguna` varchar(25) NOT NULL,
+  `aktif` enum('1', '0') NOT NULL,
   FOREIGN KEY(id_pengguna) REFERENCES pengguna(id) ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -127,9 +129,9 @@ CREATE TABLE `rekening` (
 -- Dumping data untuk tabel `rekening`
 --
 
-INSERT INTO `rekening` (`nomor_rekening`, `id_pengguna`) VALUES
-('0002-01-011987-11-1', 'AB12C-ABCHD-8ABCD-88CAB'),
-('0002-01-011987-11-2', 'AB12C-ABCHD-8ABCD-88CAC');
+INSERT INTO `rekening` (`nomor_rekening`, `id_pengguna`, `aktif`) VALUES
+('0002-01-011987-11-1', 'AB12C-ABCHD-8ABCD-88CAB', '1'),
+('0002-01-011987-11-2', 'AB12C-ABCHD-8ABCD-88CAC', '1');
 
 -- --------------------------------------------------------
 
