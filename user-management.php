@@ -55,6 +55,17 @@
                 <h2>Manajemen Pengguna</h2>
                 <?php if (pengguna()['jenis_pengguna']==0) {?>
                     <?php switch (@$_GET['action']) {
+                        case 'add-bank-account':
+                            echo '<h3>Tambah Rekening Customer</h3>';
+                            if (!pengguna_rinci($_GET['nama-pengguna'])['pengguna']) header('Location: user-management');
+                            if (!empty($_POST)) {
+                                add_bank_account_validation();
+                                if (empty($pesan_error)) {
+                                    echo "Rekening berhasil ditambah dengan nomor $tmp dan setoran awal Rp {$_POST['set-awal']}";
+                                    echo '<br><button onclick="location.href=\'user-management?nama-pengguna='.$_GET['nama-pengguna'].'\'">Kembali</button>';
+                                } else include 'includes/add-bank-account-content.php';
+                            } else include 'includes/add-bank-account-content.php';
+                        break;
                         default: ?>
                             <h3>Detail Pengguna</h3>
                             <form>

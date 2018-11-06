@@ -198,4 +198,40 @@ function pengguna_rinci($nama_pengguna) {
     return $re;
 }
 
+function random_angka($panjang) {
+    $r = '';
+    for ($x=0; $x<$panjang; $x++) $r .= random_int(0, 9);
+    return $r;
+}
+
+function generate_nomor_rekening() {
+    global $conn;
+    $sudah_ada = true;
+    while ($sudah_ada) {
+        $re = '0002-01-'.random_angka(6).'-'.random_angka(2).'-'.random_angka(1);
+        $q = $conn->prepare("SELECT * FROM rekening WHERE nomor_rekening='$re'");
+        $q->execute();
+        @$sudah_ada = $q->fetchAll();
+    }
+    return $re;
+}
+
+$tmp = '';
+function add_bank_account_validation() {
+    global $pesan_error;
+    validasi_masukan_numerik($pesan_error, 'set-awal');
+    validasi_masukan_wajib($pesan_error, 'set-awal');
+    if (empty($pesan_error)) {
+        $nomor_rekening = generate_nomor_rekening();
+        global $tmp;
+        $tmp = $nomor_rekening;
+        global $conn;
+        $q = $conn->prepare("INSERT INTO rekening VALUES ('$nomor_rekening', '{$_GET['nama-pengguna']}', '1')");
+        $q->execute();
+        $id = generate_id('transaksi', 'id');
+        $q = $conn->prepare("INSERT INTO transaksi VALUES ('$id', CURRENT_TIMESTAMP, '0', '$nomor_rekening', NULL, '{$_POST['set-awal']}')");
+        $q->execute();
+    }
+}
+
 ?>
