@@ -39,14 +39,10 @@
             <hr>
             <div class="artikel">
                 <ul>
-                    <?php if (pengguna()['jenis_pengguna']=='0') {?>
-                    <li>Manajemen Pengguna</li>
-                    <?php } else {?>
                     <li><a href="rek-info">Informasi Rekening</a></li>
                     <li><a>Mutasi Rekening</a></li>
                     <li><a href="transfer">Transfer</a></li>
                     <li><a href="user-management">Manajemen Pengguna</a></li>
-                    <?php }?>
                 </ul>
             </div>
         </div>
