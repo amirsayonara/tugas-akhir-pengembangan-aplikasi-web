@@ -56,22 +56,22 @@
                 <?php if (pengguna()['jenis_pengguna']==0) {?>
                     <?php switch (@$_GET['action']) {
                         case 'delete-bank-account':
-                        $ada = false;
-                        foreach (pengguna_rinci($_GET['nama-pengguna'])['rekening'] as $x)
-                            if ($x['nomor_rekening']==$_GET['account-number']) {
-                                $ada = true;
-                                break;}
-                        if (!$ada|pengguna_rinci($_GET['nama-pengguna'])['pengguna']['jenis_pengguna']=='0'|count(pengguna_rinci($_GET['nama-pengguna'])['rekening'])<2) header('Location: user-management');
-                        echo '<h3>Hapus Rekening Customer</h3>';
-                        if (@$_POST['konfirmasi']) {
-                            hapus_rekening($_GET['account-number']);
-                            echo "Nomor rekening {$_GET['account-number']} atas nama ".info_rekening($_GET['account-number'])['nama']." berhasil dihapus.";
-                            echo '<br><button onclick="location.href=\'user-management?nama-pengguna='.$_GET['nama-pengguna'].'\'">Kembali</button>';
-                        } else {
-                            echo "Nomor rekening {$_GET['account-number']} atas nama ".info_rekening($_GET['account-number'])['nama']." akan dihapus. Saldo saat ini dengan nominal Rp ".info_rekening($_GET['account-number'])['saldo']." juga nomor rekening tidak dapat dikembalikan.";
-                            echo '<form method="POST"><input type="hidden" value="true" name="konfirmasi"><input type="submit" value="Konfirmasi">';
-                            echo '<input type="reset" onclick="location.href=\'user-management?nama-pengguna='.$_GET['nama-pengguna'].'\'" value="Batal"></form>';
-                        }
+                            $ada = false;
+                            foreach (pengguna_rinci($_GET['nama-pengguna'])['rekening'] as $x)
+                                if ($x['nomor_rekening']==$_GET['account-number']) {
+                                    $ada = true;
+                                    break;}
+                            if (!$ada|pengguna_rinci($_GET['nama-pengguna'])['pengguna']['jenis_pengguna']=='0'|count(pengguna_rinci($_GET['nama-pengguna'])['rekening'])<2) header('Location: user-management');
+                            echo '<h3>Hapus Rekening Customer</h3>';
+                            if (@$_POST['konfirmasi']) {
+                                hapus_rekening($_GET['account-number']);
+                                echo "Nomor rekening {$_GET['account-number']} atas nama ".info_rekening($_GET['account-number'])['nama']." berhasil dihapus.";
+                                echo '<br><button onclick="location.href=\'user-management?nama-pengguna='.$_GET['nama-pengguna'].'\'">Kembali</button>';
+                            } else {
+                                echo "Nomor rekening {$_GET['account-number']} atas nama ".info_rekening($_GET['account-number'])['nama']." akan dihapus. Saldo saat ini dengan nominal Rp ".info_rekening($_GET['account-number'])['saldo']." juga nomor rekening tidak dapat dikembalikan.";
+                                echo '<form method="POST"><input type="hidden" value="true" name="konfirmasi"><input type="submit" value="Konfirmasi">';
+                                echo '<input type="reset" onclick="location.href=\'user-management?nama-pengguna='.$_GET['nama-pengguna'].'\'" value="Batal"></form>';
+                            }
                         break;
                         case 'add-bank-account':
                             echo '<h3>Tambah Rekening Customer</h3>';
