@@ -126,7 +126,7 @@
                         if (!empty($_POST)) {
                             save_user_management_validation();
                             if (!empty($pesan_error)) { 
-                                include 'includes/edit-user-profile-content-error.php';
+                                include 'includes/edit-user-profile-content.php';
                             } else {
                                 header('Location: user-management');
                             }

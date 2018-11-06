@@ -1,25 +1,46 @@
                 <form method="POST">
                     <table>
                         <tr>
-                            <td><label for="nama-pengguna">Nama Pengguna</label></td><td><input value="<?=pengguna()['nama_pengguna']?>" type="text" name="nama-pengguna" id="nama-pengguna"></td>
+                            <td><label for="nama-pengguna">Nama Pengguna</label></td><td><input value="<?=$_POST['nama-pengguna'] ?? pengguna()['nama_pengguna']?>" type="text" name="nama-pengguna" id="nama-pengguna"></td>
                         </tr>
                         <tr>
-                            <td><label for="sandi">Sandi</label></td><td><input type="password" name="sandi" id="sandi"></td>
+                            <td></td><td><span class="pesan-error"><?=@$pesan_error['nama-pengguna']?></span></td>
                         </tr>
                         <tr>
-                            <td><label for="konfirmasi-sandi">Konfirmasi Sandi</label></td><td><input type="password" name="konfirmasi-sandi" id="konfirmasi-sandi"></td>
+                            <td><label for="sandi">Sandi</label></td><td><input value="<?=$_POST['sandi'] ?? ''?>" type="password" name="sandi" id="sandi"></td>
                         </tr>
                         <tr>
-                            <td><label for="nama">Nama</label></td><td><input value="<?=pengguna()['nama']?>" type="text" name="nama" id="nama"></td>
+                            <td></td><td><span class="pesan-error"><?=@$pesan_error['sandi']?></span></td>
                         </tr>
                         <tr>
-                            <td><label for="alamat">Alamat</label></td><td><textarea type="text" name="alamat" id="alamat"><?=pengguna()['alamat']?></textarea></td>
+                            <td><label for="konfirmasi-sandi">Konfirmasi Sandi</label></td><td><input value="<?=$_POST['konfirmasi-sandi'] ?? ''?>" type="password" name="konfirmasi-sandi" id="konfirmasi-sandi"></td>
                         </tr>
                         <tr>
-                            <td><label for="nomor-hp">Nomor HP</label></td><td><input value="<?=pengguna()['nomor_hp']?>" type="text" name="nomor-hp" id="nomor-hp"></td>
+                            <td></td><td><span class="pesan-error"><?=@$pesan_error['konfirmasi-sandi']?></span></td>
                         </tr>
                         <tr>
-                            <td><label for="email">E-mail</label></td><td><input value="<?=pengguna()['email']?>" type="text" name="email" id="email"></td>
+                            <td><label for="nama">Nama</label></td><td><input value="<?=$_POST['nama'] ?? pengguna()['nama']?>" type="text" name="nama" id="nama"></td>
+                        </tr>
+                        <tr>
+                            <td></td><td><span class="pesan-error"><?=@$pesan_error['nama']?></span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="alamat">Alamat</label></td><td><textarea name="alamat" id="alamat"><?=$_POST['alamat'] ?? pengguna()['alamat']?></textarea></td>
+                        </tr>
+                        <tr>
+                            <td></td><td><span class="pesan-error"><?=@$pesan_error['alamat']?></span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="nomor-hp">Nomor HP</label></td><td><input value="<?=$_POST['nomor-hp'] ?? pengguna()['nomor_hp']?>" type="text" name="nomor-hp" id="nomor-hp"></td>
+                        </tr>
+                        <tr>
+                            <td></td><td><span class="pesan-error"><?=@$pesan_error['nomor-hp']?></span></td>
+                        </tr>
+                        <tr>
+                            <td><label for="email">E-mail</label></td><td><input value="<?=$_POST['email'] ?? pengguna()['email']?>" type="text" name="email" id="email"></td>
+                        </tr>
+                        <tr>
+                            <td></td><td><span class="pesan-error"><?=@$pesan_error['email']?></span></td>
                         </tr>
                         <tr>
                             <td></td><td><span class="pesan-mini">*) Sandi biarkan kosong jika tidak ingin diubah</span></td>
