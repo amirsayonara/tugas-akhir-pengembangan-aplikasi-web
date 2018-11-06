@@ -234,4 +234,10 @@ function add_bank_account_validation() {
     }
 }
 
+function hapus_rekening($nomor_rekening) {
+    global $conn;
+    $q = $conn->prepare("UPDATE rekening SET aktif='0' WHERE nomor_rekening='{$_GET['account-number']}'");
+    $q->execute();
+}
+
 ?>
