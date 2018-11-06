@@ -93,6 +93,7 @@ function transfer_validation() {
     if ($tmp) {
         if ($tmp[0]['nama_pengguna']==pengguna()['nama_pengguna']) $pesan_error['nomor-rekening-tujuan'] = 'Tidak dapat transfer ke rekening anda sendiri';
     } else $pesan_error['nomor-rekening-tujuan'] = 'Nomor rekening tidak valid';
+    if ($_POST['nominal'] < 1) $pesan_error['nominal'] = 'Nominal harus lebih dari 0';
     validasi_masukan_numerik($pesan_error, 'nominal');
     validasi_masukan_wajib($pesan_error, 'nominal');
     if (!isset($pesan_error['nominal']) & !isset($pesan_error['nomor-rekening'])) {
