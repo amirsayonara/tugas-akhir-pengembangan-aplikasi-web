@@ -187,7 +187,7 @@ function list_pengguna() {
 function pengguna_rinci($nama_pengguna) {
     $re = array();
     global $conn;
-    $q = $conn->prepare("SELECT * FROM pengguna JOIN jenis_pengguna ON jenis_pengguna.id=pengguna.jenis_pengguna WHERE nama_pengguna='$nama_pengguna'");
+    $q = $conn->prepare("SELECT * FROM pengguna JOIN jenis_pengguna ON jenis_pengguna.id=pengguna.jenis_pengguna WHERE nama_pengguna='$nama_pengguna' AND aktif='1'");
     $q->execute();
     $re['pengguna'] = @$q->fetchAll()[0];
     $q = $conn->prepare("SELECT * FROM rekening WHERE nama_pengguna='$nama_pengguna' AND aktif='1'");
