@@ -50,7 +50,7 @@
             <div class="artikel">
                 <h2>Informasi Rekening</h2>
                 <?php
-                echo '<br><table border=1><th>No</th><th>Nomor Rekening</th><th>Saldo</th>';$no = 1;
+                echo '<br><table border=1><tr><th>No</th><th>Nomor Rekening</th><th>Saldo</th></tr>';$no = 1;
                 foreach (pengguna_rinci($_SESSION['nama-pengguna'])['rekening'] as $x) {
                     echo '<tr>';
                     $saldo = info_rekening($x['nomor_rekening'])['saldo'];
