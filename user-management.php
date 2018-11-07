@@ -64,13 +64,15 @@
                             if (@$_POST['konfirmasi']) {
                                 if ($banyak_admin < 2 & pengguna_rinci($_GET['nama-pengguna'])['pengguna']['jenis_pengguna']=='0') {
                                     echo 'Tidak dapat menghapus. Harus terdapat minimal 1 (satu) admin';
+                                    echo '<br><button onclick="location.href=\'user-management?nama-pengguna='.$_GET['nama-pengguna'].'\'">Kembali</button>';
                                 } else if (pengguna()['nama_pengguna']==$_GET['nama-pengguna']) {
                                     echo 'Tidak dapat menghapus akun anda sendiri.';
+                                    echo '<br><button onclick="location.href=\'user-management?nama-pengguna='.$_GET['nama-pengguna'].'\'">Kembali</button>';
                                 } else {
                                     hapus_pengguna($_GET['nama-pengguna']);
                                     echo "Akun dengan nama pengguna {$_GET['nama-pengguna']} berhasil dihapus.";
+                                    echo '<br><button onclick="location.href=\'user-management\'">Kembali</button>';
                                 }
-                                echo '<br><button onclick="location.href=\'user-management\'">Kembali</button>';
                             } else {
                                 echo "Akun dengan nama pengguna {$_GET['nama-pengguna']} akan dihapus. Pengguna tidak akan dapat login kembali menggunakan akun tersebut.";
                                 if (pengguna_rinci($_GET['nama-pengguna'])['pengguna']['jenis_pengguna']!=0)
