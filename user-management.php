@@ -57,9 +57,19 @@
                     <?php switch (@$_GET['action']) {
                         case 'delete-user':
                             if (!pengguna_rinci($_GET['nama-pengguna'])['pengguna']) header('Location: user-management');
+                            $banyak_admin = 0;
+                            foreach (list_pengguna() as $x) {
+                                if ($x['jenis_pengguna']=='0') $banyak_admin++;
+                            }
                             if (@$_POST['konfirmasi']) {
-                                hapus_pengguna($_GET['nama-pengguna']);
-                                echo "Akun dengan nama pengguna {$_GET['nama-pengguna']} berhasil dihapus.";
+                                if ($banyak_admin < 2 & pengguna_rinci($_GET['nama-pengguna'])['pengguna']['jenis_pengguna']=='0') {
+                                    echo 'Tidak dapat menghapus. Harus terdapat minimal 1 (satu) admin';
+                                } else if (pengguna()['nama_pengguna']==$_GET['nama-pengguna']) {
+                                    echo 'Tidak dapat menghapus akun anda sendiri.';
+                                } else {
+                                    hapus_pengguna($_GET['nama-pengguna']);
+                                    echo "Akun dengan nama pengguna {$_GET['nama-pengguna']} berhasil dihapus.";
+                                }
                                 echo '<br><button onclick="location.href=\'user-management\'">Kembali</button>';
                             } else {
                                 echo "Akun dengan nama pengguna {$_GET['nama-pengguna']} akan dihapus. Pengguna tidak akan dapat login kembali menggunakan akun tersebut.";
