@@ -77,7 +77,7 @@ CREATE TABLE `pengguna` (
   `email` varchar(64) NOT NULL UNIQUE,
   `nama` char(64) NOT NULL,
   `alamat` varchar(254) DEFAULT NULL,
-  `nomor_hp` char(15) NOT NULL UNIQUE,
+  `nomor_hp` char(25) NOT NULL UNIQUE,
   `aktif` enum('1', '0') NOT NULL,
   FOREIGN KEY(jenis_pengguna) REFERENCES jenis_pengguna(id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
