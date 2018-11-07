@@ -224,7 +224,8 @@ function add_bank_account_validation() {
         global $tmp;
         $tmp = $nomor_rekening;
         global $conn;
-        $q = $conn->prepare("INSERT INTO rekening VALUES ('$nomor_rekening', '{$_GET['nama-pengguna']}', '1')");
+        $nama_pengguna = $_GET['nama-pengguna'] ?? $_POST['nama-pengguna'];
+        $q = $conn->prepare("INSERT INTO rekening VALUES ('$nomor_rekening', '$nama_pengguna', '1')");
         $q->execute();
         $id = generate_id('transaksi', 'id');
         $q = $conn->prepare("INSERT INTO transaksi VALUES ('$id', CURRENT_TIMESTAMP, '0', '$nomor_rekening', NULL, '{$_POST['set-awal']}')");
@@ -277,6 +278,40 @@ function save_user_management_validation_admin() {
     if (pengguna_rinci($_GET['nama-pengguna'])['pengguna']['nama_pengguna']==pengguna()['nama_pengguna']) $_SESSION['nama-pengguna'] = $_POST['nama-pengguna'];
     $q = $conn->prepare("UPDATE pengguna SET nama_pengguna='{$_POST['nama-pengguna']}', nama='{$_POST['nama']}', alamat='{$_POST['alamat']}', nomor_hp='{$_POST['nomor-hp']}', email='{$_POST['email']}' WHERE nama_pengguna='{$_GET['nama-pengguna']}' AND aktif='1'");
     $q->execute();
+}
+
+function add_user_validation($jenis_pengguna) {
+    global $pesan_error;
+    global $conn;
+    $q = $conn->prepare("SELECT * FROM pengguna WHERE nama_pengguna='{$_POST['nama-pengguna']}' AND aktif='1'");
+    $q->execute();
+    if (@$q->fetchAll()) $pesan_error['nama-pengguna'] = 'Nama pengguna sudah digunakan';
+    validasi_masukan_alfanumerik($pesan_error, 'nama-pengguna');
+    validasi_masukan_wajib($pesan_error, 'nama-pengguna');
+    validasi_masukan_minimal($pesan_error, 'sandi', 4);
+    validasi_masukan_wajib($pesan_error, 'sandi');
+    validasi_masukan_sama($pesan_error, 'konfirmasi-sandi', 'sandi', 'Sandi');
+    validasi_masukan_alfabet($pesan_error, 'nama');
+    validasi_masukan_wajib($pesan_error, 'nama');
+    $q = $conn->prepare("SELECT * FROM pengguna WHERE nomor_hp='{$_POST['nomor-hp']}'");
+    $q->execute();
+    if (@$q->fetchAll()) $pesan_error['nomor-hp'] = 'Nomor HP sudah digunakan';
+    validasi_masukan_panjang($pesan_error, 'nomor-hp', 10, 15);
+    validasi_masukan_numerik($pesan_error, 'nomor-hp');
+    validasi_masukan_wajib($pesan_error, 'nomor-hp');
+    $q = $conn->prepare("SELECT * FROM pengguna WHERE email='{$_POST['email']}'");
+    $q->execute();
+    if (@$q->fetchAll()) $pesan_error['email'] = 'E-mail sudah digunakan';
+    validasi_masukan_email($pesan_error, 'email');
+    validasi_masukan_wajib($pesan_error, 'email');
+    if ($jenis_pengguna!=0) {
+        validasi_masukan_numerik($pesan_error, 'set-awal');
+        validasi_masukan_wajib($pesan_error, 'set-awal');
+    }
+    if (!empty($pesan_error)) return;
+    $q = $conn->prepare("INSERT INTO pengguna VALUES ('{$_POST['nama-pengguna']}', SHA2('{$_POST['sandi']}', 0), '$jenis_pengguna', '{$_POST['email']}', '{$_POST['nama']}', '{$_POST['alamat']}', '{$_POST['nomor-hp']}', '1')");
+    $q->execute();
+    if ($jenis_pengguna!=0) add_bank_account_validation();
 }
 
 ?>
