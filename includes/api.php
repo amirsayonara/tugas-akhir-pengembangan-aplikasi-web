@@ -325,4 +325,21 @@ function hapus_pengguna($nama_pengguna) {
     $q->execute();
 }
 
+function rp($nominal) {
+    $nominal = strval($nominal); $r = ''; $c = 0;
+    $nominal = explode('.', $nominal);
+    $nominal = $nominal[0];
+    $nominal = explode('-', $nominal);
+    if (sizeof($nominal)>1) {
+        $min = '-'; $nominal = $nominal[1];
+    } else {
+        $min = ''; $nominal = $nominal[0];
+    }
+    for ($x=strlen($nominal)-1; $x>=0; $x--) {
+        $r = $nominal[$x].$r; $c++;
+        if ($c%3==0 & $x>0) $r = ".".$r;
+    }
+    return 'Rp '.$min.$r.',00';
+}
+
 ?>
