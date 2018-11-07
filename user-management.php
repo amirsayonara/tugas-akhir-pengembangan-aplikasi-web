@@ -76,7 +76,7 @@
                             } else {
                                 echo "Akun dengan nama pengguna {$_GET['nama-pengguna']} akan dihapus. Pengguna tidak akan dapat login kembali menggunakan akun tersebut.";
                                 if (pengguna_rinci($_GET['nama-pengguna'])['pengguna']['jenis_pengguna']!=0)
-                                    echo ' Semua rekening dan saldo yang dimiliki oleh akun costumer tersebut akan non-aktif dan tidak dapat dikembalikan.';
+                                    echo ' Semua rekening dan saldo yang dimiliki oleh akun customer tersebut akan non-aktif dan tidak dapat dikembalikan.';
                                 echo '<form method="POST"><input type="hidden" value="true" name="konfirmasi"><input type="submit" value="Konfirmasi">';
                                 echo '<input type="reset" onclick="location.href=\'user-management?nama-pengguna='.$_GET['nama-pengguna'].'\'" value="Batal"></form>';
                             }
