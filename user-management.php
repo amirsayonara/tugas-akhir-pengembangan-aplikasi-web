@@ -40,12 +40,12 @@
             <div class="artikel">
                 <ul>
                     <?php if (pengguna()['jenis_pengguna']=='0') {?>
-                    <li>Manajemen Pengguna</li>
+                    <li class="disini">Manajemen Pengguna</li>
                     <?php } else {?>
                     <li><a href="rek-info">Informasi Rekening</a></li>
                     <li><a href="rek-mutation">Mutasi Rekening</a></li>
                     <li><a href="transfer">Transfer</a></li>
-                    <li><a>Manajemen Pengguna</a></li>
+                    <li class="disini">Manajemen Pengguna</li>
                     <?php }?>
                 </ul>
             </div>

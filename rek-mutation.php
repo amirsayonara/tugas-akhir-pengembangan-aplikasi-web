@@ -40,7 +40,7 @@
             <div class="artikel">
                 <ul>
                     <li><a href="rek-info">Informasi Rekening</a></li>
-                    <li><a>Mutasi Rekening</a></li>
+                    <li class="disini">Mutasi Rekening</li>
                     <li><a href="transfer">Transfer</a></li>
                     <li><a href="user-management">Manajemen Pengguna</a></li>
                 </ul>

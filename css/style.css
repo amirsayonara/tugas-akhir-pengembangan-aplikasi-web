@@ -168,3 +168,31 @@ hr {
     border: 0;
     border-top: 1px solid rgba(0,0,0,.1);
 }
+
+.kiri .artikel li a {
+    text-decoration: none;
+    color: blue;
+    cursor: pointer;
+    padding: initial;
+    transition: color 0.8s;
+}
+
+.kiri .artikel li a:hover {
+    color: white;
+}
+
+.kiri .artikel li:hover, .disini {
+    background-color: #007bff;
+    color: white;
+}
+
+.kiri .artikel li {
+    margin: 5px 0px;
+    padding: 6px;
+    display: inherit;
+    transition: background-color 0.8s;
+}
+
+.kiri .artikel ul {
+    padding: 0px;
+}

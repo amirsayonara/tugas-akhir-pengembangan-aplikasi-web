@@ -39,7 +39,7 @@
             <hr>
             <div class="artikel">
                 <ul>
-                    <li><a>Informasi Rekening</a></li>
+                    <li class="disini">Informasi Rekening</li>
                     <li><a href="rek-mutation">Mutasi Rekening</a></li>
                     <li><a href="transfer">Transfer</a></li>
                     <li><a href="user-management">Manajemen Pengguna</a></li>
