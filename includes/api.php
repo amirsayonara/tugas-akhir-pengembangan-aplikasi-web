@@ -241,4 +241,45 @@ function hapus_rekening($nomor_rekening) {
     $q->execute();
 }
 
+function save_user_management_validation_admin() {
+    global $pesan_error;
+    global $conn;
+    if ($_POST['nama-pengguna']!=pengguna_rinci($_GET['nama-pengguna'])['pengguna']['nama_pengguna']) {
+        $q = $conn->prepare("SELECT * FROM pengguna WHERE nama_pengguna='{$_POST['nama-pengguna']}' AND aktif='1'");
+        $q->execute();
+        if (@$q->fetchAll()) $pesan_error['nama-pengguna'] = 'Nama pengguna sudah digunakan';
+    }
+    validasi_masukan_alfanumerik($pesan_error, 'nama-pengguna');
+    validasi_masukan_wajib($pesan_error, 'nama-pengguna');
+    if ($_POST['sandi']!='') {
+        validasi_masukan_minimal($pesan_error, 'sandi', 4);
+        validasi_masukan_sama($pesan_error, 'konfirmasi-sandi', 'sandi', 'Sandi');
+    }
+    validasi_masukan_alfabet($pesan_error, 'nama');
+    validasi_masukan_wajib($pesan_error, 'nama');
+    if ($_POST['nomor-hp']!=pengguna_rinci($_GET['nama-pengguna'])['pengguna']['nomor_hp']) {
+        $q = $conn->prepare("SELECT * FROM pengguna WHERE nomor_hp='{$_POST['nomor-hp']}'");
+        $q->execute();
+        if (@$q->fetchAll()) $pesan_error['nomor-hp'] = 'Nomor HP sudah digunakan';
+    }
+    validasi_masukan_panjang($pesan_error, 'nomor-hp', 10, 15);
+    validasi_masukan_numerik($pesan_error, 'nomor-hp');
+    validasi_masukan_wajib($pesan_error, 'nomor-hp');
+    if ($_POST['email']!=pengguna_rinci($_GET['nama-pengguna'])['pengguna']['email']) {
+        $q = $conn->prepare("SELECT * FROM pengguna WHERE email='{$_POST['email']}'");
+        $q->execute();
+        if (@$q->fetchAll()) $pesan_error['email'] = 'E-mail sudah digunakan';
+    }
+    validasi_masukan_email($pesan_error, 'email');
+    validasi_masukan_wajib($pesan_error, 'email');
+    if (!empty($pesan_error)) return;
+    if ($_POST['sandi']!='') {
+        $q = $conn->prepare("UPDATE pengguna SET sandi=SHA2('{$_POST['sandi']}', 0) WHERE nama_pengguna='{$_GET['nama-pengguna']}' AND aktif='1'");
+        $q->execute();
+    }
+    if (pengguna_rinci($_GET['nama-pengguna'])['pengguna']['nama_pengguna']==pengguna()['nama_pengguna']) $_SESSION['nama-pengguna'] = $_POST['nama-pengguna'];
+    $q = $conn->prepare("UPDATE pengguna SET nama_pengguna='{$_POST['nama-pengguna']}', nama='{$_POST['nama']}', alamat='{$_POST['alamat']}', nomor_hp='{$_POST['nomor-hp']}', email='{$_POST['email']}' WHERE nama_pengguna='{$_GET['nama-pengguna']}' AND aktif='1'");
+    $q->execute();
+}
+
 ?>

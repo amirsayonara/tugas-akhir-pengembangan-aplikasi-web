@@ -55,6 +55,16 @@
                 <h2>Manajemen Pengguna</h2>
                 <?php if (pengguna()['jenis_pengguna']==0) {?>
                     <?php switch (@$_GET['action']) {
+                        case 'edit-profile':
+                            if (!pengguna_rinci($_GET['nama-pengguna'])['pengguna']) header('Location: user-management');
+                            echo '<h3>Edit Profil</h3>';
+                            if (!empty($_POST)) {
+                                save_user_management_validation_admin();
+                                if (empty($pesan_error)) {
+                                    header('Location: user-management?nama-pengguna='.$_POST['nama-pengguna']);
+                                } else include 'includes/edit-user-profile-content-admin.php';
+                            } else include 'includes/edit-user-profile-content-admin.php';
+                        break;
                         case 'delete-bank-account':
                             $ada = false;
                             foreach (pengguna_rinci($_GET['nama-pengguna'])['rekening'] as $x)
