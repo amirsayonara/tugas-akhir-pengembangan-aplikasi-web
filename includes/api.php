@@ -316,10 +316,12 @@ function add_user_validation($jenis_pengguna) {
 
 function hapus_pengguna($nama_pengguna) {
     global $conn;
-    $id = generate_id('pengguna', 'nama_pengguna');
-    $q = $conn->prepare("UPDATE pengguna SET aktif='0', nama_pengguna='$id' WHERE nama_pengguna='{$_GET['nama-pengguna']}' AND aktif='1'");
+    $u = generate_id('pengguna', 'nama_pengguna');
+    $e = generate_id('pengguna', 'email');
+    $n = generate_id('pengguna', 'nomor_hp');
+    $q = $conn->prepare("UPDATE pengguna SET aktif='0', nama_pengguna='$u', email='$e', nomor_hp='$n' WHERE nama_pengguna='{$_GET['nama-pengguna']}' AND aktif='1'");
     $q->execute();
-    $q = $conn->prepare("UPDATE rekening SET aktif='0' WHERE nama_pengguna='$id' AND aktif='1'");
+    $q = $conn->prepare("UPDATE rekening SET aktif='0' WHERE nama_pengguna='$u' AND aktif='1'");
     $q->execute();
 }
 
