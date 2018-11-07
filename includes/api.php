@@ -168,16 +168,13 @@ function save_user_management_validation() {
     validasi_masukan_wajib($pesan_error, 'email');
     if (!empty($pesan_error)) return;
     $nama_pengguna = pengguna()['nama_pengguna'];
-    $q = $conn->prepare("UPDATE pengguna SET nama_pengguna='{$_POST['nama-pengguna']}' WHERE nama_pengguna='$nama_pengguna' AND aktif='1'");
-    $q->execute();
-    $_SESSION['nama-pengguna'] = $_POST['nama-pengguna'];
-    $nama_pengguna = pengguna()['nama_pengguna'];
     if ($_POST['sandi']!='') {
         $q = $conn->prepare("UPDATE pengguna SET sandi=SHA2('{$_POST['sandi']}', 0) WHERE nama_pengguna='$nama_pengguna' AND aktif='1'");
         $q->execute();
     }
-    $q = $conn->prepare("UPDATE pengguna SET nama='{$_POST['nama']}', alamat='{$_POST['alamat']}', nomor_hp='{$_POST['nomor-hp']}', email='{$_POST['email']}' WHERE nama_pengguna='$nama_pengguna' AND aktif='1'");
+    $q = $conn->prepare("UPDATE pengguna SET nama_pengguna='{$_POST['nama-pengguna']}', nama='{$_POST['nama']}', alamat='{$_POST['alamat']}', nomor_hp='{$_POST['nomor-hp']}', email='{$_POST['email']}' WHERE nama_pengguna='$nama_pengguna' AND aktif='1'");
     $q->execute();
+    $_SESSION['nama-pengguna'] = $_POST['nama-pengguna'];
 }
 
 function list_pengguna() {
