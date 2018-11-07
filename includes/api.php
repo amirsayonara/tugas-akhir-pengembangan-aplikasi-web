@@ -179,7 +179,7 @@ function save_user_management_validation() {
 
 function list_pengguna() {
     global $conn;
-    $q = $conn->prepare('SELECT * FROM pengguna');
+    $q = $conn->prepare('SELECT * FROM pengguna WHERE aktif="1"');
     $q->execute();
     return @$q->fetchAll();
 }
@@ -312,6 +312,15 @@ function add_user_validation($jenis_pengguna) {
     $q = $conn->prepare("INSERT INTO pengguna VALUES ('{$_POST['nama-pengguna']}', SHA2('{$_POST['sandi']}', 0), '$jenis_pengguna', '{$_POST['email']}', '{$_POST['nama']}', '{$_POST['alamat']}', '{$_POST['nomor-hp']}', '1')");
     $q->execute();
     if ($jenis_pengguna!=0) add_bank_account_validation();
+}
+
+function hapus_pengguna($nama_pengguna) {
+    global $conn;
+    $id = generate_id('pengguna', 'nama_pengguna');
+    $q = $conn->prepare("UPDATE pengguna SET aktif='0', nama_pengguna='$id' WHERE nama_pengguna='{$_GET['nama-pengguna']}' AND aktif='1'");
+    $q->execute();
+    $q = $conn->prepare("UPDATE rekening SET aktif='0' WHERE nama_pengguna='$id' AND aktif='1'");
+    $q->execute();
 }
 
 ?>

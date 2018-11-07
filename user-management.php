@@ -55,6 +55,20 @@
                 <h2>Manajemen Pengguna</h2>
                 <?php if (pengguna()['jenis_pengguna']==0) {?>
                     <?php switch (@$_GET['action']) {
+                        case 'delete-user':
+                            if (!pengguna_rinci($_GET['nama-pengguna'])['pengguna']) header('Location: user-management');
+                            if (@$_POST['konfirmasi']) {
+                                hapus_pengguna($_GET['nama-pengguna']);
+                                echo "Akun dengan nama pengguna {$_GET['nama-pengguna']} berhasil dihapus.";
+                                echo '<br><button onclick="location.href=\'user-management\'">Kembali</button>';
+                            } else {
+                                echo "Akun dengan nama pengguna {$_GET['nama-pengguna']} akan dihapus. Pengguna tidak akan dapat login kembali menggunakan akun tersebut.";
+                                if (pengguna_rinci($_GET['nama-pengguna'])['pengguna']['jenis_pengguna']!=0)
+                                    echo ' Semua rekening dan saldo yang dimiliki oleh akun costumer tersebut akan non-aktif dan tidak dapat dikembalikan.';
+                                echo '<form method="POST"><input type="hidden" value="true" name="konfirmasi"><input type="submit" value="Konfirmasi">';
+                                echo '<input type="reset" onclick="location.href=\'user-management?nama-pengguna='.$_GET['nama-pengguna'].'\'" value="Batal"></form>';
+                            }
+                        break;
                         case 'add-user-admin':
                             echo '<h3>Tambah Admin</h3>';
                             if (!empty($_POST)) {
