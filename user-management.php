@@ -96,7 +96,7 @@
                             if (!empty($_POST)) {
                                 add_user_validation(1);
                                 if (empty($pesan_error)) {
-                                    echo "Berhasil menambahkan Customer dengan nama {$_POST['nama']}, nomor rekening $tmp, dan setoran awal Rp {$_POST['set-awal']}.";
+                                    echo "Berhasil menambahkan Customer dengan nama {$_POST['nama']}, nomor rekening $tmp, dan setoran awal ".rp($_POST['set-awal']).".";
                                     echo '<br><button onclick="location.href=\'user-management\'">Kembali</button>';
                                 } else include 'includes/add-user-customer-content.php';
                             } else include 'includes/add-user-customer-content.php';
@@ -124,7 +124,7 @@
                                 echo "Nomor rekening {$_GET['account-number']} atas nama ".info_rekening($_GET['account-number'])['nama']." berhasil dihapus.";
                                 echo '<br><button onclick="location.href=\'user-management?nama-pengguna='.$_GET['nama-pengguna'].'\'">Kembali</button>';
                             } else {
-                                echo "Nomor rekening {$_GET['account-number']} atas nama ".info_rekening($_GET['account-number'])['nama']." akan dihapus. Saldo saat ini dengan nominal Rp ".info_rekening($_GET['account-number'])['saldo']." juga nomor rekening tidak dapat dikembalikan.";
+                                echo "Nomor rekening {$_GET['account-number']} atas nama ".info_rekening($_GET['account-number'])['nama']." akan dihapus. Saldo saat ini dengan nominal ".rp(info_rekening($_GET['account-number'])['saldo'])." juga nomor rekening tidak dapat dikembalikan.";
                                 echo '<form method="POST"><input type="hidden" value="true" name="konfirmasi"><input type="submit" value="Konfirmasi">';
                                 echo '<input type="reset" onclick="location.href=\'user-management?nama-pengguna='.$_GET['nama-pengguna'].'\'" value="Batal"></form>';
                             }
@@ -135,7 +135,7 @@
                             if (!empty($_POST)) {
                                 add_bank_account_validation();
                                 if (empty($pesan_error)) {
-                                    echo "Rekening berhasil ditambah dengan nomor $tmp dan setoran awal Rp {$_POST['set-awal']}";
+                                    echo "Rekening berhasil ditambah dengan nomor $tmp dan setoran awal ".rp($_POST['set-awal']);
                                     echo '<br><button onclick="location.href=\'user-management?nama-pengguna='.$_GET['nama-pengguna'].'\'">Kembali</button>';
                                 } else include 'includes/add-bank-account-content.php';
                             } else include 'includes/add-bank-account-content.php';
@@ -191,7 +191,7 @@
                                     foreach ($pengguna_rinci['rekening'] as $x) {
                                         $hapus = '';
                                         if (count($pengguna_rinci['rekening']) > 1) $hapus = " - <a href=\"user-management?action=delete-bank-account&account-number={$x['nomor_rekening']}&nama-pengguna={$_GET['nama-pengguna']}\">Hapus</a>";
-                                        echo "<li>{$x['nomor_rekening']} - [Rp ".info_rekening($x['nomor_rekening'])['saldo']."]$hapus</li>";
+                                        echo "<li>{$x['nomor_rekening']} - [".rp(info_rekening($x['nomor_rekening'])['saldo'])."]$hapus</li>";
                                     }
                                     echo '</ul>';
                                     echo "<button onclick=\"location.href='user-management?action=add-bank-account&nama-pengguna={$_GET['nama-pengguna']}'\">Tambah Tekening</button>";

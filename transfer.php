@@ -73,7 +73,7 @@
                                         <td>Atas Nama</td><td>: <?=info_rekening($_POST['nomor-rekening-tujuan'])['nama']?></td>
                                     </tr>
                                     <tr>
-                                        <td>Nominal</td><td>: Rp <?=$_POST['nominal']?></td>
+                                        <td>Nominal</td><td>: <?=rp($_POST['nominal'])?></td>
                                     </tr>
                                     <tr>
                                         <td></td><td><input type="submit" value="Konfirmasi"> <input type="reset" value="Batal" onclick="history.back()"></td>

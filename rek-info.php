@@ -54,7 +54,7 @@
                 foreach (pengguna_rinci($_SESSION['nama-pengguna'])['rekening'] as $x) {
                     echo '<tr>';
                     $saldo = info_rekening($x['nomor_rekening'])['saldo'];
-                    echo "<td>$no</td><td>{$x['nomor_rekening']}</td><td>$saldo</td>";
+                    echo "<td>$no</td><td>{$x['nomor_rekening']}</td><td>".rp($saldo)."</td>";
                     echo '</tr>';
                 }
                 echo '</table>';
