@@ -55,6 +55,16 @@
                 <h2>Manajemen Pengguna</h2>
                 <?php if (pengguna()['jenis_pengguna']==0) {?>
                     <?php switch (@$_GET['action']) {
+                        case 'add-user-admin':
+                            echo '<h3>Tambah Admin</h3>';
+                            if (!empty($_POST)) {
+                                add_user_validation(0);
+                                if (empty($pesan_error)) {
+                                    echo "Berhasil menambahkan Admin dengan nama pengguna {$_POST['nama-pengguna']}.";
+                                    echo '<br><button onclick="location.href=\'user-management\'">Kembali</button>';
+                                } else include 'includes/add-user-admin-content.php';
+                            } else include 'includes/add-user-admin-content.php';
+                        break;
                         case 'add-user-customer':
                             echo '<h3>Tambah Customer</h3>';
                             if (!empty($_POST)) {
