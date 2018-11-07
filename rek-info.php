@@ -49,40 +49,15 @@
         <div class="kanan">
             <div class="artikel">
                 <h2>Informasi Rekening</h2>
-                <form method="POST">
-                    <table>
-                        <tr>
-                            <td><label for="nomor-rekening">Pilih Rekening</label></td>
-                            <td>
-                                <select name="nomor-rekening" id="nomor-rekening">
-                                    <option value="-1">---</option>
-                                    <?php
-                                    foreach (list_rekening($_SESSION['nama-pengguna']) as $x) echo "<option value=\"{$x['nomor_rekening']}\">{$x['nomor_rekening']}</option>";
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td><td><input type="submit" value="Kirim"></td>
-                        </tr>
-                    </table>
-                </form>
                 <?php
-                if (!empty($_POST)) {
-                    $saldo = info_rekening(@$_POST['nomor-rekening'])['saldo'];
-                    if($saldo) {
-                        ?><hr>
-                        <table>
-                            <tr>
-                                <td>Rekening</td><td>: <?=$_POST['nomor-rekening']?></td>
-                            </tr>
-                            <tr>
-                                <td>Saldo</td><td>: Rp <?=$saldo?></td>
-                            </tr>
-                        </table>
-                        <?php
-                    }
+                echo '<br><table border=1><th>No</th><th>Nomor Rekening</th><th>Saldo</th>';$no = 1;
+                foreach (pengguna_rinci($_SESSION['nama-pengguna'])['rekening'] as $x) {
+                    echo '<tr>';
+                    $saldo = info_rekening($x['nomor_rekening'])['saldo'];
+                    echo "<td>$no</td><td>{$x['nomor_rekening']}</td><td>$saldo</td>";
+                    echo '</tr>';
                 }
+                echo '</table>';
                 ?>
             </div>
         </div>

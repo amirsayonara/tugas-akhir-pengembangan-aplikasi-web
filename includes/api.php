@@ -48,7 +48,7 @@ function list_rekening($nama_pengguna) {
 
 function info_rekening($nomor_rekening) {
     global $conn;
-    $q = $conn->prepare("SELECT *, IFNULL((SELECT SUM(nominal) FROM transaksi WHERE rekening_asal=r.nomor_rekening AND jenis_transaksi='0'), 0) + IFNULL((SELECT SUM(nominal) FROM transaksi WHERE rekening_tujuan=r.nomor_rekening AND jenis_transaksi='1'), 0) - IFNULL((SELECT SUM(nominal) FROM transaksi WHERE rekening_asal=r.nomor_rekening AND jenis_transaksi='1'), 0)'saldo' FROM rekening r JOIN pengguna p ON r.nama_pengguna=p.nama_pengguna WHERE r.nomor_rekening='$nomor_rekening' AND r.aktif='1'");
+    $q = $conn->prepare("SELECT *, IFNULL((SELECT SUM(nominal) FROM transaksi WHERE rekening_asal=r.nomor_rekening AND jenis_transaksi='0'), 0) + IFNULL((SELECT SUM(nominal) FROM transaksi WHERE rekening_tujuan=r.nomor_rekening AND jenis_transaksi='1'), 0) - IFNULL((SELECT SUM(nominal) FROM transaksi WHERE rekening_asal=r.nomor_rekening AND jenis_transaksi='1'), 0)'saldo' FROM rekening r JOIN pengguna p ON r.nama_pengguna=p.nama_pengguna WHERE r.nomor_rekening='$nomor_rekening'");
     $q->execute();
     return @$q->fetchAll()[0];
 }
