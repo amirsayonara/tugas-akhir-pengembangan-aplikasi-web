@@ -57,7 +57,11 @@
                                 <select name="nomor-rekening" id="nomor-rekening">
                                     <option value="-1">---</option>
                                     <?php
-                                    foreach (list_rekening($_SESSION['nama-pengguna']) as $x) echo "<option value=\"{$x['nomor_rekening']}\">{$x['nomor_rekening']}</option>";
+                                    foreach (list_rekening($_SESSION['nama-pengguna']) as $x) {
+                                        $selected = "";
+                                        if ($x['nomor_rekening']==@$_POST['nomor-rekening']) $selected = " selected";
+                                        echo "<option$selected value=\"{$x['nomor_rekening']}\">{$x['nomor_rekening']}</option>";
+                                    }
                                     ?>
                                 </select>
                             </td>
