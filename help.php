@@ -28,13 +28,33 @@
         <div class="kiri">
             <div class="artikel">
                 <h2>Menu</h2>
-                <ul>
-                    <li class="disini">Halaman Depan</li>
-                    <li><a href="help?tab=login">Masuk</a></li>
-                    <li><a href="help?tab=rek-info">Informasi Rekening</a></li>
-                    <li><a href="help?tab=transfer">Transfer</a></li>
-                    <li><a href="help?tab=user-management">Manajemen Pengguna</a></li>
-                </ul>
+                <?php
+                $hal_depan = '<li><a href="help">Halaman Depan</a></li>';
+                $hal_login = '<li><a href="help?tab=login">Masuk</a></li>';
+                $hal_info_rek = '<li><a href="help?tab=rek-info">Informasi Rekening</a></li>';
+                $hal_transfer = '<li><a href="help?tab=transfer">Transfer</a></li>';
+                $hal_user_manage = '<li><a href="help?tab=user-management">Manajemen Pengguna</a></li>';
+                switch(@$_GET['tab']) {
+                    default:
+                        $hal_depan = '<li class="disini">Halaman Depan</li>';
+                    break;
+                    case 'login':
+                        $hal_login = '<li class="disini">Masuk</li>';
+                    break;
+                    case 'rek-info':
+                        $hal_info_rek = '<li class="disini">Informasi Rekening</li>';
+                    break;
+                    case 'transfer':
+                        $hal_transfer = '<li class="disini">Transfer</li>';
+                    break;
+                    case 'user-management':
+                        $hal_user_manage = '<li class="disini">Manajemen Pengguna</li>';
+                    break;
+                }
+                echo '<ul>';
+                    echo $hal_depan.$hal_login.$hal_info_rek.$hal_transfer.$hal_user_manage;
+                echo '</ul>';
+                ?>
             </div>
         </div>
         <div class="kanan">
