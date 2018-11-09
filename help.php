@@ -32,6 +32,7 @@
                 $hal_depan = '<li><a href="help">Halaman Depan</a></li>';
                 $hal_login = '<li><a href="help?tab=login">Masuk</a></li>';
                 $hal_info_rek = '<li><a href="help?tab=rek-info">Informasi Rekening</a></li>';
+                $hal_rek_mut = '<li><a href="help?tab=rek-mutation">Mutasi Rekening</a></li>';
                 $hal_transfer = '<li><a href="help?tab=transfer">Transfer</a></li>';
                 $hal_user_manage = '<li><a href="help?tab=user-management">Manajemen Pengguna</a></li>';
                 switch(@$_GET['tab']) {
@@ -44,6 +45,9 @@
                     case 'rek-info':
                         $hal_info_rek = '<li class="disini">Informasi Rekening</li>';
                     break;
+                    case 'rek-mutation':
+                        $hal_rek_mut = '<li class="disini">Mutasi Rekening</li>';
+                    break;
                     case 'transfer':
                         $hal_transfer = '<li class="disini">Transfer</li>';
                     break;
@@ -52,7 +56,7 @@
                     break;
                 }
                 echo '<ul>';
-                    echo $hal_depan.$hal_login.$hal_info_rek.$hal_transfer.$hal_user_manage;
+                    echo $hal_depan.$hal_login.$hal_info_rek.$hal_rek_mut.$hal_transfer.$hal_user_manage;
                 echo '</ul>';
                 ?>
             </div>
@@ -88,6 +92,19 @@
                         <li>Pastikan tab Beranda di menu navigasi bagian atas aktif</li>
                         <li>Klik Informasi Rekening pada menu bagian kiri</li>
                         <li>Tunggu beberapa saat dan akan tampil rekening beserta jumlah saldo anda</li>
+                    </ul>
+                    <?php
+                    break;
+                    case 'rek-mutation':
+                    ?>
+                    <h2>Mutasi Rekening</h2>
+                    <p>Menu ini dapat memungkinkan anda untuk melihat daftar transaksi yang anda lakukan pada rekening anda.</p>
+                    <ul>
+                        <li>Login dengan Nama Pengguna/Username dan Sandi anda</li>
+                        <li>Pastikan tab Beranda di menu navigasi bagian atas aktif</li>
+                        <li>Klik Mutasi Rekening pada menu bagian kiri</li>
+                        <li>Pilih rekening anda, kemudian klik tombol Kirim</li>
+                        <li>Anda akan melihat dartar transaksi berupa waktu, jenis, Nominal, dan Keterangan jika ada</li>
                     </ul>
                     <?php
                     break;
