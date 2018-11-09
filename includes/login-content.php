@@ -12,6 +12,12 @@
                         </tr><tr>
                             <td><span class="pesan-error"><?=@$pesan_error['password']?></span></td>
                         </tr><tr>
+                            <td><img src="captcha" alt="captcha"></td>
+                        </tr><tr>
+                            <td><input type="text" name="captcha" id="captcha" value="<?=@$_POST['captcha']?>" placeholder="Captcha"></td>
+                        </tr><tr>
+                            <td><span class="pesan-error"><?=@$pesan_error['captcha']?></span></td>
+                        </tr><tr>
                             <td><input type="submit" value="Login"> <input type="reset" value="Reset"></td>
                         </tr>
                     </table>

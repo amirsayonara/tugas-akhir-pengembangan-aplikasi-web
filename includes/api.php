@@ -11,9 +11,12 @@ function validasi_masukan_wajib(&$pesan_error, $name) {
 function login_validation() {
     $username = @$_POST['username'];
     $password = @$_POST['password'];
+    $captcha = @$_POST['captcha'];
     global $pesan_error;
     validasi_masukan_wajib($pesan_error, 'username');
     validasi_masukan_wajib($pesan_error, 'password');
+    if ($_SESSION['captcha']!=$captcha) $pesan_error['captcha'] = 'Kode captcha salah';
+    validasi_masukan_wajib($pesan_error, 'captcha');
     if (!empty($pesan_error)) return;
     try {
         global $conn;
