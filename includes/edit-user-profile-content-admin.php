@@ -1,3 +1,9 @@
+                <!--
+                    Konten pengeditan profil di level admin
+                    Author: 160411100153 MOCH. AMIR
+                    Untuk value awal adalah milik dari data pengguna yang lama
+                    Keterangan masing-masing data sudah disiapkan tempat untuk $pesan_error dan $_POST, dan diberikan tanda '@' agar tidak ada error jika variabel tersebut belum tersedia
+                    -->
                 <form method="POST">
                     <table>
                         <tr>

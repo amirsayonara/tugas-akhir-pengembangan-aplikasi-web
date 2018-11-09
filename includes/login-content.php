@@ -1,3 +1,9 @@
+                <!--
+                    Konten login
+                    Author: 160411100142 MOHAMMAD FAISHOL
+                    Tempat untuk pesan kesalahan sudah disiapkan dan value $_POST akan tampil jika tersedia
+                    Pengambilan captcha diambil dari kode php yang headernya diganti img (gambar)
+                -->
                 <h2>Login</h2>
                 <form method="POST">
                     <table>

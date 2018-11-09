@@ -1,3 +1,7 @@
+                <!--
+                    Konten transer
+                    Author: 160411100145 ABDUR ROHMAN
+                    -->
                 <form method="POST">
                     <table>
                         <tr>
@@ -7,6 +11,8 @@
                                     <option value="-1">---</option>
                                     <?php
                                     foreach (list_rekening($_SESSION['nama-pengguna']) as $x) {
+                                        //menampilkan semua rekening yang dimiliki customer
+                                        //mengecek jika rekening saat ini adalah itu, maka diset selected di drop down
                                         if ($x['nomor_rekening']==$_POST['nomor-rekening']) $selected = 'selected';
                                         else $selected = '';
                                         echo "<option $selected value=\"{$x['nomor_rekening']}\">{$x['nomor_rekening']}</option>";

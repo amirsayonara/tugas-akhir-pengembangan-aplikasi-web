@@ -1,3 +1,9 @@
+                <!--
+                    Konten penambahan admin
+                    Author: 160411100145 ABDUR ROHMAN
+                    Keterangan untuk $pesan_error dan $_POST yang sudah disiapkan di bawah diberi tanda @ agar tidak error jika variabel tersebut belum tersedia.
+                    Jika sudah tersedia, maka akan otomatis mengambil nilai dari variabel tersebut.
+                    -->
                 <form method="POST">
                     <table>
                         <tr>

@@ -1,3 +1,8 @@
+                <!--
+                    Konten penambahan customer
+                    Author: 160411100152 NATIQ HASBI ALIM
+                    Keterangan untuk tanda '??' adalah sama dengan else, jika variabel awal tidak tersedia, maka lari ke kode setelah tanda '??'
+                    -->
                 <form method="POST">
                     <table>
                         <tr>
