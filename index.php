@@ -1,4 +1,8 @@
 <?php include 'includes/api.php'; require 'includes/sudah-masuk.php' ?>
+<!--
+    Halaman index/utama
+    Author: 160411100142 MOHAMMAD FAISHOL
+    -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -40,6 +44,8 @@
             <div class="artikel">
                 <ul>
                     <?php if (pengguna()['jenis_pengguna']=='0') {?>
+                    <!-- Mengecek jika yang login adalah admin, maka hanya dapat melakukan manajemen pengguna level admin
+                         dan jika yang login adalah customer, maka dapat melakukan transaksi dan fitur customer lainnya -->
                     <li><a href="user-management">Manajemen Pengguna</a></li>
                     <?php } else {?>
                     <li><a href="rek-info">Informasi Rekening</a></li>

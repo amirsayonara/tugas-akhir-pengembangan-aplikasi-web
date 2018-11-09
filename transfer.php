@@ -1,4 +1,8 @@
 <?php include 'includes/api.php'; require 'includes/sudah-masuk-customer.php' ?>
+<!--
+    HALAMAN TRANSFER
+    AUTHOR: 160411100145 ABDUR ROHMAN
+    -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -50,11 +54,11 @@
             <div class="artikel">
                 <h2>Transfer</h2>
                 <?php
-                if (!empty($_POST)) {
+                if (!empty($_POST)) {//pengecekan data $_POST, jika sudah ada maka melakukan validasi di bawah ini
                     transfer_validation();
-                    if (!empty($pesan_error)) include 'includes/transfer-content.php';
-                    else {
-                        if (!isset($_POST['konfirmasi-transfer'])) {
+                    if (!empty($pesan_error)) include 'includes/transfer-content.php'; //jika masih ada pesan error
+                    else { //jika tidak ada pesan error
+                        if (!isset($_POST['konfirmasi-transfer'])) { //mengecek index di data $_POST, jika belum ada maka dianggap belum konfirmasi
                             ?>
                             <form method="POST">
                                 Anda akan mentransfer uang dengan rincian sbb:
@@ -82,9 +86,11 @@
                             </form>
                             <?php
                         } else {
+                            //jika sudah ada konfirmasi dan tidak ada pesan error
                             echo 'Transfer Berhasil <button onclick="location.replace(\'/transfer\')">Kembali</button>';
                         }
                     }
+                    //pertamakali diload (belum ada data $_POST)
                 } else include 'includes/transfer-content.php';
                 ?>
             </div>

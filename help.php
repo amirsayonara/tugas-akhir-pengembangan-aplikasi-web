@@ -1,4 +1,8 @@
 <?php include 'includes/api.php'; ?>
+<!--
+    Halaman help/bantuan
+    Author: 160411100152 NATIQ HASBI ALIM
+    -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -16,7 +20,7 @@
                 <ul>
                     <li><a href=".">Beranda</a> |</li>
                     <li><a class="dipilih">Bantuan</a>
-                    <?php if (isset($_SESSION['nama-pengguna'])) { ?>
+                    <?php if (isset($_SESSION['nama-pengguna'])) { //mengecek jika sudah login, maka akan ada menu tambahan 'logout' di paling kanan ?>
                     |</li>
                     <li><a href="logout">Logout</a></li> <?php } else { ?>
                     </li><?php } ?>
@@ -29,12 +33,19 @@
             <div class="artikel">
                 <h2>Menu</h2>
                 <?php
+                /**
+                 * Algorima pindah tab dan konten
+                 * Author: 160411100153 MOCH. AMIR
+                 */
+
+                //inisialisasi awal jika berada di halaman bantuan utama
                 $hal_depan = '<li><a href="help">Halaman Depan</a></li>';
                 $hal_login = '<li><a href="help?tab=login">Masuk</a></li>';
                 $hal_info_rek = '<li><a href="help?tab=rek-info">Informasi Rekening</a></li>';
                 $hal_rek_mut = '<li><a href="help?tab=rek-mutation">Mutasi Rekening</a></li>';
                 $hal_transfer = '<li><a href="help?tab=transfer">Transfer</a></li>';
                 $hal_user_manage = '<li><a href="help?tab=user-management">Manajemen Pengguna</a></li>';
+                //jika salah satu menu sebelah kiri dipilih maka akan mengubah class dan menghapus tag <a> pada menu tersebut
                 switch(@$_GET['tab']) {
                     default:
                         $hal_depan = '<li class="disini">Halaman Depan</li>';
@@ -56,6 +67,7 @@
                     break;
                 }
                 echo '<ul>';
+                    //menampilkan menu yang telah diubah di atas
                     echo $hal_depan.$hal_login.$hal_info_rek.$hal_rek_mut.$hal_transfer.$hal_user_manage;
                 echo '</ul>';
                 ?>

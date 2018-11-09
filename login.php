@@ -1,4 +1,8 @@
 <?php include 'includes/api.php'; if (isset($_SESSION['nama-pengguna'])) header('Location: ./');?>
+<!--
+    Halaman login/masuk
+    Author: 160411100142 MOHAMMAD FAISHOL
+    -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -23,10 +27,10 @@
         <div class="kiri">
             <div class="artikel">
                 <?php
-                if (!empty($_POST)) {
-                    login_validation();
-                    if (!empty($pesan_error)) include 'includes/login-content.php';
-                } else include 'includes/login-content.php';
+                if (!empty($_POST)) { //jika sudah ada data $_POST
+                    login_validation(); //melakukan validasi login
+                    if (!empty($pesan_error)) include 'includes/login-content.php'; //jika masih ada kesalahan
+                } else include 'includes/login-content.php'; //pertamakali diload
                 ?>
             </div>
         </div>

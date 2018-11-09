@@ -1,12 +1,19 @@
+# HTACCESS: PENGATURAN SERVER CLEAN URL AGAR TIDAK PERLU .php DI BELAKANG URL
+# Author: 160411100153 MOCH. AMIR
+
+# mengaktifkan modul rewrite apache
 RewriteEngine On
+# mengecek jika user merequest file dan bukan folder
 RewriteCond %{SCRIPT_FILENAME} !-d
+# maka request akan ditambah .php di belakangnya dan query string mengikuti
 RewriteRule ^([^.]+)$ $1.php [NC,L]
 
+# pengaturan upload (sebenarnya tidak begitu penting, cuma dipasang agar settingan layaknya server pada umumnya)
 	php_value upload_max_filesize 10000M
 	php_value post_max_size 10000M
 	php_value max_execution_time 30000
 	php_value max_input_time 30000
 	php_value memory_limit -1
 
+# menyetting agar tidak langsung ditambahkan slash otomatis "/" jika url merequest folder
 directoryslash off
-#Header set Content-Type "text/plain; charset=utf-8"

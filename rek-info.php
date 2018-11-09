@@ -1,4 +1,8 @@
 <?php include 'includes/api.php'; require 'includes/sudah-masuk-customer.php' ?>
+<!--
+    HALAMAN INFO REKENING
+    AUTHOR: 160411100152 NATIQ HASBI ALIM
+    -->
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -50,8 +54,9 @@
             <div class="artikel">
                 <h2>Informasi Rekening</h2>
                 <?php
-                echo '<br><table border=1><tr><th>No</th><th>Nomor Rekening</th><th>Saldo</th></tr>';$no = 1;
+                echo '<br><table border=1><tr><th>No</th><th>Nomor Rekening</th><th>Saldo</th></tr>';$no = 1; //penomoran tabel
                 foreach (pengguna_rinci($_SESSION['nama-pengguna'])['rekening'] as $x) {
+                    //menampilkan data rekening yang dimiliki pengguna dan saldonya
                     echo '<tr>';
                     $saldo = info_rekening($x['nomor_rekening'])['saldo'];
                     echo "<td>$no</td><td>{$x['nomor_rekening']}</td><td>".rp($saldo)."</td>";
