@@ -92,7 +92,7 @@
                                 echo "Akun dengan nama pengguna {$_GET['nama-pengguna']} akan dihapus. Pengguna tidak akan dapat login kembali menggunakan akun tersebut.";
                                 if (pengguna_rinci($_GET['nama-pengguna'])['pengguna']['jenis_pengguna']!=0)
                                     echo ' Semua rekening dan saldo yang dimiliki oleh akun customer tersebut akan non-aktif dan tidak dapat dikembalikan.';
-                                echo '<form method="POST"><input type="hidden" value="true" name="konfirmasi"><input type="submit" value="Konfirmasi">';
+                                echo '<form method="POST"><input type="hidden" value="true" name="konfirmasi"><input type="submit" value="Konfirmasi"> ';
                                 echo '<input type="reset" onclick="location.href=\'user-management?nama-pengguna='.$_GET['nama-pengguna'].'\'" value="Batal"></form>';
                             }
                         break;
@@ -148,7 +148,7 @@
                             } else {
                                 //jika belum ada index 'konfirmasi' di data $_POST
                                 echo "Nomor rekening {$_GET['account-number']} atas nama ".info_rekening($_GET['account-number'])['nama']." akan dihapus. Saldo saat ini dengan nominal ".rp(info_rekening($_GET['account-number'])['saldo'])." juga nomor rekening tidak dapat dikembalikan.";
-                                echo '<form method="POST"><input type="hidden" value="true" name="konfirmasi"><input type="submit" value="Konfirmasi">';
+                                echo '<form method="POST"><input type="hidden" value="true" name="konfirmasi"><input type="submit" value="Konfirmasi"> ';
                                 echo '<input type="reset" onclick="location.href=\'user-management?nama-pengguna='.$_GET['nama-pengguna'].'\'" value="Batal"></form>';
                             }
                         break;
@@ -233,7 +233,7 @@
                             }
                             echo '<hr>';
                             //tombol untuk menambah customer baru
-                            echo "<button onclick=\"location.href='user-management?action=add-user-customer'\">Tambah Pengguna Customer</button>";
+                            echo "<button onclick=\"location.href='user-management?action=add-user-customer'\">Tambah Pengguna Customer</button> ";
                             //tombol untuk menambah admin baru
                             echo "<button onclick=\"location.href='user-management?action=add-user-admin'\">Tambah Pengguna Admin</button>";
                         break;

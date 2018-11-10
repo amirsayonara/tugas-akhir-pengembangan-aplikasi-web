@@ -11,7 +11,7 @@
                                         <td></td><td><span class="pesan-error"><?=@$pesan_error['set-awal']?></span></td>
                                     </tr>
                                     <tr>
-                                        <td></td><td><input type="submit" value="Tambah"><input type="reset" value="Batal" onclick="location.href='user-management?nama-pengguna=<?=$_GET['nama-pengguna']?>'"></td>
+                                        <td></td><td><input type="submit" value="Tambah"> <input type="reset" value="Batal" onclick="location.href='user-management?nama-pengguna=<?=$_GET['nama-pengguna']?>'"></td>
                                     </tr>
                                 </table>
                             </form>
