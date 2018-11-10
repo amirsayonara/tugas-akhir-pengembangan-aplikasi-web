@@ -6,6 +6,7 @@
 -- Waktu pembuatan: 01 Nov 2018 pada 16.51
 -- Versi server: 10.1.31-MariaDB
 -- Versi PHP: 7.2.11
+-- Dibuat oleh: Kelompok
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -20,6 +21,8 @@ SET time_zone = "+00:00";
 
 --
 -- Database: `banking`
+-- Pengecekan database jika ada, dan akan dihapus
+-- Author: 160411100153 ABDUR ROHMAN
 --
 
 DROP DATABASE IF EXISTS banking;
@@ -30,6 +33,7 @@ USE banking;
 
 --
 -- Struktur dari tabel `jenis_transaksi`
+-- Author:  160411100142 MOHAMMAD FAISHOL
 --
 
 CREATE TABLE `jenis_transaksi` (
@@ -49,6 +53,7 @@ INSERT INTO `jenis_transaksi` (`id`, `keterangan`) VALUES
 
 --
 -- Struktur dari tabel `jenis_pengguna`
+-- Author: 160411100142 MOHAMMAD FAISHOL
 --
 
 CREATE TABLE `jenis_pengguna` (
@@ -68,6 +73,7 @@ INSERT INTO `jenis_pengguna` (`id`, `keterangan`) VALUES
 
 --
 -- Struktur dari tabel `pengguna`
+-- Author: 160411100153 MOCH. AMIR
 --
 
 CREATE TABLE `pengguna` (
@@ -95,6 +101,7 @@ INSERT INTO `pengguna` (`nama_pengguna`, `sandi`, `jenis_pengguna`, `email`, `na
 
 --
 -- Struktur dari tabel `rekening`
+-- Author: 160411100145 ABDUR ROHMAN
 --
 
 CREATE TABLE `rekening` (
@@ -116,6 +123,7 @@ INSERT INTO `rekening` (`nomor_rekening`, `nama_pengguna`, `aktif`) VALUES
 
 --
 -- Struktur dari tabel `transaksi`
+-- Author: 160411100152 NATIQ HASBI ALIM
 --
 
 CREATE TABLE `transaksi` (

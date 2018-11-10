@@ -61,7 +61,7 @@
                     <?php switch (@$_GET['action']) {
                         /**
                          * Algoritma pindah action dengan switch variabel action di URL
-                         * Author: 160411100153 MOCH. AMIR dibantu 160411100142 MOHAMMAD FAISHOL
+                         * Author: 160411100153 MOCH. AMIR dibantu 160411100145 ABDUR ROHMAN
                          */
                         case 'delete-user':
                             //validasi jika nama pengguna tidak ada (memasukkan username pengguna di url dan tidak sah) maka didirect ke halaman awal manajemen user
@@ -241,9 +241,10 @@
                     ?>
                 <?php } else { //jika yang login adalah customer (bukan admin), akses yang diberikan hanya mengedit dirinya sendiri
                 //algoritmanya sama dengan pengeditan user di level admin, jika selesai akan ditampilkan detail dirinya sendiri
-                    if (@$_GET['edit']) {?>
+                    //mengecek jika data $_GET ada edit ?edit=true maka dianggap ingin mengedit profil, jika tidak maka ditampilkan profilnya
+                    if (@$_GET['edit']) { ?>
                     <h3>Edit Akun dan Profil</h3><?php
-                        if (!empty($_POST)) {
+                        if (!empty($_POST)) { //mengecek data $_POST, jika ada, maka dianggap telah mengedit dan mengisi dan divalidasi untuk disimpan
                             save_user_management_validation();
                             if (!empty($pesan_error)) { 
                                 include 'includes/edit-user-profile-content.php';
