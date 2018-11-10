@@ -60,7 +60,7 @@
                     echo '<tr>';
                     $saldo = info_rekening($x['nomor_rekening'])['saldo'];
                     echo "<td>$no</td><td>{$x['nomor_rekening']}</td><td>".rp($saldo)."</td>";
-                    echo '</tr>';
+                    echo '</tr>'; $no++;
                 }
                 echo '</table>';
                 ?>
