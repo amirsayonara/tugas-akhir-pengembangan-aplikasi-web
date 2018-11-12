@@ -22,7 +22,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `banking`
 -- Pengecekan database jika ada, dan akan dihapus
--- Author: 160411100153 ABDUR ROHMAN
+-- Author: 160411100145 ABDUR ROHMAN
 --
 
 DROP DATABASE IF EXISTS banking;

@@ -8,7 +8,7 @@ session_start(); //mengaktifkan sesi
 $conn = new PDO('mysql:host=localhost;dbname=banking', 'root', ''); //membuat koneksi dipasang di variabel global
 $pesan_error = array(); //membuat variabel global untuk pesan error validasi
 
-//fungsi masukan wajib oleh 160411100153 ABDUR ROHMAN
+//fungsi masukan wajib oleh 160411100145 ABDUR ROHMAN
 //parameter name di html dan pengambilan global variabel $pesan_error
 function validasi_masukan_wajib(&$pesan_error, $name) {
     //mengecek jika data post di variabel tersebut tidak ada isinya, maka pesan error di valriabel tersebut akan diset harus diisi
@@ -280,7 +280,7 @@ function pengguna_rinci($nama_pengguna) {
     return $re; //mereturn data
 }
 
-//fungsi random angka dengan panjang tertentu oleh 160411100153 ABDUR ROHMAN
+//fungsi random angka dengan panjang tertentu oleh 160411100145 ABDUR ROHMAN
 function random_angka($panjang) {
     $r = ''; //set string kosong
     //mengulang sebanyak $panjang dengan angka random dari 0-9
@@ -288,7 +288,7 @@ function random_angka($panjang) {
     return $r; //mereturn hasil string yang berisi angka random tadi
 }
 
-//fungsi menghasilkan nomor rekening acak oleh 160411100153 ABDUR ROHMAN
+//fungsi menghasilkan nomor rekening acak oleh 160411100145 ABDUR ROHMAN
 function generate_nomor_rekening() {
     global $conn; //memanggil global variabel koneksi
     $sudah_ada = true; //asumsi sudah ada di databse
