@@ -49,15 +49,15 @@
                     <li><a href="rek-info">Informasi Rekening</a></li>
                     <li><a href="rek-mutation">Mutasi Rekening</a></li>
                     <li><a href="transfer">Transfer</a></li>
-                    <li class="disini">Manajemen Pengguna</li>
+                    <li class="disini">Informasi Pengguna</li>
                     <?php }?>
                 </ul>
             </div>
         </div>
         <div class="kanan">
             <div class="artikel">
-                <h2>Manajemen Pengguna</h2>
                 <?php if (pengguna()['jenis_pengguna']==0) {//jika yang login adalah pengguna berlevel admin?>
+                <h2>Manajemen Pengguna</h2>
                     <?php switch (@$_GET['action']) {
                         /**
                          * Algoritma pindah action dengan switch variabel action di URL
@@ -242,6 +242,7 @@
                 <?php } else { //jika yang login adalah customer (bukan admin), akses yang diberikan hanya mengedit dirinya sendiri
                 //algoritmanya sama dengan pengeditan user di level admin, jika selesai akan ditampilkan detail dirinya sendiri
                     //mengecek jika data $_GET ada edit ?edit=true maka dianggap ingin mengedit profil, jika tidak maka ditampilkan profilnya
+                echo '<h2>Informasi Pengguna</h2>';
                     if (@$_GET['edit']) { ?>
                     <h3>Edit Akun dan Profil</h3><?php
                         if (!empty($_POST)) { //mengecek data $_POST, jika ada, maka dianggap telah mengedit dan mengisi dan divalidasi untuk disimpan

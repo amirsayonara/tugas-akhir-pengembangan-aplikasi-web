@@ -46,7 +46,7 @@
                     <li><a href="rek-info">Informasi Rekening</a></li>
                     <li><a href="rek-mutation">Mutasi Rekening</a></li>
                     <li class="disini">Transfer</li>
-                    <li><a href="user-management">Manajemen Pengguna</a></li>
+                    <li><a href="user-management">Informasi Pengguna</a></li>
                 </ul>
             </div>
         </div>
