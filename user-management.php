@@ -30,14 +30,16 @@
             <div class="artikel">
                 <h3>Info Pengguna</h3>
                 <div class="info-pengguna">
-                    <table>
-                        <tr>
-                            <td>Nama</td><td>: <b><?=pengguna()['nama']?></b></td>
-                        </tr>
-                        <tr>
-                            <td>Jenis Pengguna</td><td>: <?=pengguna()['keterangan']?></td>
-                        </tr>
-                    </table>
+                    <div class="isian">
+                        <div class="baris">
+                            <div class="l-col">Nama</div>
+                            <div class="r-col">: <b><?=pengguna()['nama']?></b></div>
+                        </div>
+                        <div class="baris">
+                            <div class="l-col">Jenis Pengguna</div>
+                            <div class="r-col">: <?=pengguna()['keterangan']?></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr>
@@ -195,23 +197,23 @@
                             if ($pengguna_rinci['pengguna']) { //validasi jika data pengguna rinci ada/valid, maka ditampilkan detailnya di bawah ini
                                 echo '<hr><h4>Pengguna</h4>';
                                 ?>
-                                <table>
-                                    <tr>
-                                        <td>Nama Pengguna</td><td>: <?=$pengguna_rinci['pengguna']['nama_pengguna']?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nama</td><td>: <?=$pengguna_rinci['pengguna']['nama']?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Alamat</td><td>: <?=$pengguna_rinci['pengguna']['alamat']?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nomor HP</td><td>: <?=$pengguna_rinci['pengguna']['nomor_hp']?></td>
-                                    </tr>
-                                    <tr>
-                                        <td>E-mail</td><td>: <?=$pengguna_rinci['pengguna']['email']?></td>
-                                    </tr>
-                                </table>
+                                <div class="isian">
+                                    <div class="baris">
+                                        <div class="l-col2">Nama Pengguna</div><div class="r-col">: <?=$pengguna_rinci['pengguna']['nama_pengguna']?></div>
+                                    </div>
+                                    <div class="baris">
+                                        <div class="l-col2">Nama</div><div class="r-col">: <?=$pengguna_rinci['pengguna']['nama']?></div>
+                                    </div>
+                                    <div class="baris">
+                                        <div class="l-col2">Alamat</div><div class="r-col">: <?=$pengguna_rinci['pengguna']['alamat']?></div>
+                                    </div>
+                                    <div class="baris">
+                                        <div class="l-col2">Nomor HP</div><div class="r-col">: <?=$pengguna_rinci['pengguna']['nomor_hp']?></div>
+                                    </div>
+                                    <div class="baris">
+                                        <div class="l-col2">E-mail</div><div class="r-col">: <?=$pengguna_rinci['pengguna']['email']?></div>
+                                    </div>
+                                </div>
                                 <?php
                                 //membuat tombol dengan action ke halaman href di bawah dan auto berdasarkan nama pengguna
                                 echo "<button onclick=\"location.href='user-management?action=edit-profile&nama-pengguna={$_GET['nama-pengguna']}'\">Edit Profil Pengguna</button>";
@@ -257,26 +259,27 @@
                         }
                     } else {?>
                     <h3>Akun dan Profil</h3>
-                    <table>
-                        <tr>
-                            <td>Nama Pengguna</td><td>: <?=pengguna()['nama_pengguna']?></td>
-                        </tr>
-                        <tr>
-                            <td>Jenis Pengguna</td><td>: <?=pengguna()['keterangan']?></td>
-                        </tr>
-                        <tr>
-                            <td>Nama</td><td>: <?=pengguna()['nama']?></td>
-                        </tr>
-                        <tr>
-                            <td>Alamat</td><td>: <?=pengguna()['alamat']?></td>
-                        </tr>
-                        <tr>
-                            <td>Nomor HP</td><td>: <?=pengguna()['nomor_hp']?></td>
-                        </tr>
-                        <tr>
-                            <td>E-mail</td><td>: <a href="mailto:<?=pengguna()['email']?>"><?=pengguna()['email']?></a></td>
-                        </tr>
-                    </table>
+                        <div class="isian">
+                            <div class="baris">
+                                <div class="l-col2">Nama Pengguna</div><div class="r-col">: <?=pengguna()['nama_pengguna']?></div>
+                            </div>
+                            <div class="baris">
+                                <div class="l-col2">Jenis Pengguna</div><div class="r-col">: <?=pengguna()['keterangan']?></div>
+                            </div>
+                            <div class="baris">
+                                <div class="l-col2">Nama</div><div class="r-col">: <?=pengguna()['nama']?></div>
+                            </div>
+                            <div class="baris">
+                                <div class="l-col2">Alamat</div><div class="r-col">: <?=pengguna()['alamat']?></div>
+                            </div>
+                            <div class="baris">
+                                <div class="l-col2">Nomor HP</div><div class="r-col">: <?=pengguna()['nomor_hp']?></div>
+                            </div>
+                            <div class="baris">
+                                <div class="l-col2">E-mail</div><div class="r-col">: <a href="mailto:<?=pengguna()['email']?>"><?=pengguna()['email']?></a></div>
+                            </div>
+                        </div>
+                    
                     <button onclick="location.href='user-management?edit=true'">Edit Akun dan Profil</button>
                     <?php }
                 } ?>

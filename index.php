@@ -30,14 +30,16 @@
             <div class="artikel">
                 <h3>Info Pengguna</h3>
                 <div class="info-pengguna">
-                    <table>
-                        <tr>
-                            <td>Nama</td><td>: <b><?=pengguna()['nama']?></b></td>
-                        </tr>
-                        <tr>
-                            <td>Jenis Pengguna</td><td>: <?=pengguna()['keterangan']?></td>
-                        </tr>
-                    </table>
+                    <div class="isian">
+                        <div class="baris">
+                            <div class="l-col">Nama</div>
+                            <div class="r-col">: <b><?=pengguna()['nama']?></b></div>
+                        </div>
+                        <div class="baris">
+                            <div class="l-col">Jenis Pengguna</div>
+                            <div class="r-col">: <?=pengguna()['keterangan']?></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr>

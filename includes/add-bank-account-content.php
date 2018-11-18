@@ -3,15 +3,17 @@
                                 Author: 160411100142 MOHAMMAD FAISHOL
                                 -->
                             <form method="POST">
-                                <table>
-                                    <tr>
-                                        <td><label for="set-awal">Setoran Awal</label></td><td><input type="text" value="<?=@$_POST['set-awal']?>" name="set-awal" id="set-awal"></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td><td><span class="pesan-error"><?=@$pesan_error['set-awal']?></span></td>
-                                    </tr>
-                                    <tr>
-                                        <td></td><td><input type="submit" value="Tambah"> <input type="reset" value="Batal" onclick="location.href='user-management?nama-pengguna=<?=$_GET['nama-pengguna']?>'"></td>
-                                    </tr>
-                                </table>
+                                <div class="isian-luar">
+                                    <div class="isian">
+                                        <div class="baris">
+                                            <div class="l-col"><label for="set-awal">Setoran Awal</label></div><div class="r-col"><input type="text" value="<?=@$_POST['set-awal']?>" name="set-awal" id="set-awal"></div>
+                                        </div>
+                                        <div class="baris">
+                                            <div class="l-col"></div><div class="r-col"><span class="pesan-error"><?=@$pesan_error['set-awal']?></span></div>
+                                        </div>
+                                        <div class="baris">
+                                            <div class="l-col"></div><div class="r-col"><input type="submit" value="Tambah"> <input type="reset" value="Batal" onclick="location.href='user-management?nama-pengguna=<?=$_GET['nama-pengguna']?>'"></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>

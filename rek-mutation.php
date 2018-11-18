@@ -30,14 +30,16 @@
             <div class="artikel">
                 <h3>Info Pengguna</h3>
                 <div class="info-pengguna">
-                    <table>
-                        <tr>
-                            <td>Nama</td><td>: <b><?=pengguna()['nama']?></b></td>
-                        </tr>
-                        <tr>
-                            <td>Jenis Pengguna</td><td>: <?=pengguna()['keterangan']?></td>
-                        </tr>
-                    </table>
+                    <div class="isian">
+                        <div class="baris">
+                            <div class="l-col">Nama</div>
+                            <div class="r-col">: <b><?=pengguna()['nama']?></b></div>
+                        </div>
+                        <div class="baris">
+                            <div class="l-col">Jenis Pengguna</div>
+                            <div class="r-col">: <?=pengguna()['keterangan']?></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <hr>
@@ -54,28 +56,30 @@
             <div class="artikel">
                 <h2>Mutasi Rekening</h2>
                 <form method="POST">
-                    <table>
-                        <tr>
-                            <td><label for="nomor-rekening">Pilih Rekening</label></td>
-                            <td>
-                                <select name="nomor-rekening" id="nomor-rekening">
-                                    <option value="-1">---</option>
-                                    <?php
-                                    //menampilkan banyaknya rekening yang dimiliki customer di drop down
-                                    foreach (list_rekening($_SESSION['nama-pengguna']) as $x) {
-                                        $selected = "";
-                                        //mengecek jika yang tersorot (diselect saat ini) adalah rekening itu, maka drop down akan menyorot rekening tsb
-                                        if ($x['nomor_rekening']==@$_POST['nomor-rekening']) $selected = " selected";
-                                        echo "<option$selected value=\"{$x['nomor_rekening']}\">{$x['nomor_rekening']}</option>";
-                                    }
-                                    ?>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td><td><input type="submit" value="Kirim"></td>
-                        </tr>
-                    </table>
+                    <div class="isian-luar">
+                        <div class="isian">
+                            <div class="baris">
+                                <div class="l-col"><label for="nomor-rekening">Pilih Rekening</label></div>
+                                <div class="r-col">
+                                    <select name="nomor-rekening" id="nomor-rekening">
+                                        <option value="-1">---</option>
+                                        <?php
+                                        //menampilkan banyaknya rekening yang dimiliki customer di drop down
+                                        foreach (list_rekening($_SESSION['nama-pengguna']) as $x) {
+                                            $selected = "";
+                                            //mengecek jika yang tersorot (diselect saat ini) adalah rekening itu, maka drop down akan menyorot rekening tsb
+                                            if ($x['nomor_rekening']==@$_POST['nomor-rekening']) $selected = " selected";
+                                            echo "<option$selected value=\"{$x['nomor_rekening']}\">{$x['nomor_rekening']}</option>";
+                                        }
+                                        ?>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="baris">
+                                <div class="l-col"></div><div class="r-col"><input type="submit" value="Kirim"></div>
+                            </div>
+                        </div>
+                    </div>
                 </form>
                 <?php
                 if (!empty($_POST)) { //jika data $_POST tidak kosong (sudah ada request dan masukan)

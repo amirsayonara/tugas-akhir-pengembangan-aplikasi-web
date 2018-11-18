@@ -139,6 +139,7 @@ textarea {
 }
 select, option {
     height: 40px;
+    width: 220px;
 }
 input[type="text"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
     border-color:#66afe9;
@@ -155,7 +156,7 @@ input[type="submit"], input[type="reset"], button {
 }
 form {
     border-radius: 5px;
-    width: fit-content;
+    /*width: fit-content;*/
     margin: auto;
 }
 td ul {
@@ -200,4 +201,31 @@ hr {
 
 .kiri .artikel ul {
     padding: 0px;
+}
+
+.isian-luar {
+    margin: auto;
+    width: 450px;
+}
+
+.isian-luar .isian .l-col {
+    width: 130px;
+    padding-top: 10px;
+}
+
+.isian .l-col2 {
+    float: left;
+    width: 130px;
+}
+
+.isian .l-col {
+    float: left;
+    width: 95px;
+}
+.isian .r-col {
+    
+}
+.baris {
+    overflow: hidden;
+    margin: 10px 0 10px 0;
 }
