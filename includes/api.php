@@ -263,7 +263,7 @@ function list_pengguna() {
     return @$q->fetchAll();
 }
 
-//fungsi list pengguna oleh 160411100142 MOHAMMAD FAISHOL
+//fungsi pengguna rinci oleh 160411100142 MOHAMMAD FAISHOL
 function pengguna_rinci($nama_pengguna) {
     $re = array(); //set nilai awal array kosong
     global $conn; //memanggil koneksi
