@@ -124,6 +124,7 @@ header li a:hover, .dipilih {
 
 .pesan-error {
     color: red;
+    font-size: 12px;
 }
 
 input[type="text"], input[type="password"], select, textarea {
@@ -222,10 +223,14 @@ hr {
     float: left;
     width: 95px;
 }
-.isian .r-col {
-    
+.captcha {
+    margin-top: 10px;
 }
 .baris {
     overflow: hidden;
     margin: 10px 0 10px 0;
+}
+.form-login {
+    margin: auto;
+    width: 222px;
 }
