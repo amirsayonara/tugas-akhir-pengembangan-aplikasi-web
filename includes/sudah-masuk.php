@@ -11,6 +11,6 @@ if (isset($_SESSION['nama-pengguna'])) {//mengecek jika sudah ada sesi dengan na
     $q->execute();
     if (!@$q->fetchAll()) { //jika ternyata data yang dicatat di sesi tersebut sudah tidak berlaku didatabse
         unset($_SESSION['nama-pengguna']); //membuang sesi tersebut (dikeluarkan paksa, karena sudah tidak valid)
-        header('Location: login'); //dan mendirect ke halaman login, untuk melakukan authorized lagi
+        header('Location: ./'); //dan mendirect ke halaman login, untuk melakukan authorized lagi
     }
-} else header('Location: login'); //jika tidak ada catatan masuk di sesi, langsung didirect ke halaman login
+} else header('Location: ./'); //jika tidak ada catatan masuk di sesi, langsung didirect ke halaman login

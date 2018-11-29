@@ -18,7 +18,7 @@
             <h1>C07 Net Banking</h1>
             <nav>
                 <ul>
-                    <li><a href=".">Beranda</a> |</li>
+                    <li><a href="home">Beranda</a> |</li>
                     <li><a href="help">Bantuan </a> |</li>
                     <li><a href="logout">Logout</a></li>
                 </ul>

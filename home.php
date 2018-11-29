@@ -1,7 +1,7 @@
-<?php include 'includes/api.php'; require 'includes/sudah-masuk-customer.php' ?>
+<?php include 'includes/api.php'; require 'includes/sudah-masuk.php' ?>
 <!--
-    HALAMAN INFO REKENING
-    AUTHOR: 160411100152 NATIQ HASBI ALIM
+    Halaman index/utama
+    Author: 160411100142 MOHAMMAD FAISHOL
     -->
 <!DOCTYPE html>
 <html lang="id">
@@ -18,7 +18,7 @@
             <h1>C07 Net Banking</h1>
             <nav>
                 <ul>
-                    <li><a href="home">Beranda</a> |</li>
+                    <li><a class="dipilih">Beranda</a> |</li>
                     <li><a href="help">Bantuan </a> |</li>
                     <li><a href="logout">Logout</a></li>
                 </ul>
@@ -45,27 +45,23 @@
             <hr>
             <div class="artikel">
                 <ul>
-                    <li class="disini">Informasi Rekening</li>
+                    <?php if (pengguna()['jenis_pengguna']=='0') {?>
+                    <!-- Mengecek jika yang login adalah admin, maka hanya dapat melakukan manajemen pengguna level admin
+                         dan jika yang login adalah customer, maka dapat melakukan transaksi dan fitur customer lainnya -->
+                    <li><a href="user-management">Manajemen Pengguna</a></li>
+                    <?php } else {?>
+                    <li><a href="rek-info">Informasi Rekening</a></li>
                     <li><a href="rek-mutation">Mutasi Rekening</a></li>
                     <li><a href="transfer">Transfer</a></li>
                     <li><a href="user-management">Informasi Pengguna</a></li>
+                    <?php }?>
                 </ul>
             </div>
         </div>
         <div class="kanan">
             <div class="artikel">
-                <h2>Informasi Rekening</h2>
-                <?php
-                echo '<br><table border=1><tr><th>No</th><th>Nomor Rekening</th><th>Saldo</th></tr>';$no = 1; //penomoran tabel
-                foreach (pengguna_rinci($_SESSION['nama-pengguna'])['rekening'] as $x) {
-                    //menampilkan data rekening yang dimiliki pengguna dan saldonya
-                    echo '<tr>';
-                    $saldo = info_rekening($x['nomor_rekening'])['saldo'];
-                    echo "<td>$no</td><td>{$x['nomor_rekening']}</td><td>".rp($saldo)."</td>";
-                    echo '</tr>'; $no++;
-                }
-                echo '</table>';
-                ?>
+                <h2>Halaman Depan</h2>
+                <p>Selamat datang <?=pengguna()['nama']?> di C07 Internet Banking!</p>
             </div>
         </div>
     </div>

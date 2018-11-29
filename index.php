@@ -1,6 +1,6 @@
-<?php include 'includes/api.php'; require 'includes/sudah-masuk.php' ?>
+<?php include 'includes/api.php'; if (isset($_SESSION['nama-pengguna'])) header('Location: ./home');?>
 <!--
-    Halaman index/utama
+    Halaman login/masuk
     Author: 160411100142 MOHAMMAD FAISHOL
     -->
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
-    <title>C07 Internet Banking</title>
+    <title>C07 Internet Banking - Masuk</title>
 </head>
 <body>
     <header>
@@ -18,9 +18,7 @@
             <h1>C07 Net Banking</h1>
             <nav>
                 <ul>
-                    <li><a class="dipilih">Beranda</a> |</li>
-                    <li><a href="help">Bantuan </a> |</li>
-                    <li><a href="logout">Logout</a></li>
+                    <li><a href="help">Bantuan</a></li>
                 </ul>
             </nav>
         </div>
@@ -28,40 +26,19 @@
     <div class="konten-utama">
         <div class="kiri">
             <div class="artikel">
-                <h3>Info Pengguna</h3>
-                <div class="info-pengguna">
-                    <div class="isian">
-                        <div class="baris">
-                            <div class="l-col">Nama</div>
-                            <div class="r-col">: <b><?=pengguna()['nama']?></b></div>
-                        </div>
-                        <div class="baris">
-                            <div class="l-col">Jenis Pengguna</div>
-                            <div class="r-col">: <?=pengguna()['keterangan']?></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr>
-            <div class="artikel">
-                <ul>
-                    <?php if (pengguna()['jenis_pengguna']=='0') {?>
-                    <!-- Mengecek jika yang login adalah admin, maka hanya dapat melakukan manajemen pengguna level admin
-                         dan jika yang login adalah customer, maka dapat melakukan transaksi dan fitur customer lainnya -->
-                    <li><a href="user-management">Manajemen Pengguna</a></li>
-                    <?php } else {?>
-                    <li><a href="rek-info">Informasi Rekening</a></li>
-                    <li><a href="rek-mutation">Mutasi Rekening</a></li>
-                    <li><a href="transfer">Transfer</a></li>
-                    <li><a href="user-management">Informasi Pengguna</a></li>
-                    <?php }?>
-                </ul>
+                <?php
+                if (!empty($_POST)) { //jika sudah ada data $_POST
+                    login_validation(); //melakukan validasi login
+                    if (!empty($pesan_error)) include 'includes/login-content.php'; //jika masih ada kesalahan
+                } else include 'includes/login-content.php'; //pertamakali diload
+                ?>
             </div>
         </div>
         <div class="kanan">
+            <img src="images/gambar1.jpg" alt="Coba" width="100%">
             <div class="artikel">
-                <h2>Halaman Depan</h2>
-                <p>Selamat datang <?=pengguna()['nama']?> di C07 Internet Banking!</p>
+                <h2>Informasi</h2>
+                <p>Testing</p>
             </div>
         </div>
     </div>

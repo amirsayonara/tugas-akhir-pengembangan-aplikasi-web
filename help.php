@@ -18,7 +18,7 @@
             <h1>C07 Net Banking</h1>
             <nav>
                 <ul>
-                    <li><a href=".">Beranda</a> |</li>
+                    <li><a href="home">Beranda</a> |</li>
                     <li><a class="dipilih">Bantuan</a>
                     <?php if (isset($_SESSION['nama-pengguna'])) { //mengecek jika sudah login, maka akan ada menu tambahan 'logout' di paling kanan ?>
                     |</li>
