@@ -169,24 +169,16 @@
                         default: ?>
                             <h3>Detail Pengguna</h3>
                             <form>
-                                <table>
-                                    <tr>
-                                        <td><label for="nama-pengguna">Pilih pengguna</label></td>
-                                        <td>
-                                            <select name="nama-pengguna" id="nama-pengguna">
-                                                <option value="-1">---</option>
-                                                <?php foreach (list_pengguna() as $x) { 
-                                                    $selected = '';
-                                                    if ($x['nama_pengguna']==@$_GET['nama-pengguna']) $selected = 'selected';
-                                                    echo "<option $selected value=\"{$x['nama_pengguna']}\">{$x['nama']} - {$x['email']}</option>";
-                                                }?>
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td><td><input type="submit" value="Pilih"></td>
-                                    </tr>
-                                </table>
+                                <label for="nama-pengguna">Pilih pengguna:</label>
+                                <select name="nama-pengguna" id="nama-pengguna">
+                                    <option value="-1">---</option>
+                                    <?php foreach (list_pengguna() as $x) { 
+                                        $selected = '';
+                                        if ($x['nama_pengguna']==@$_GET['nama-pengguna']) $selected = 'selected';
+                                        echo "<option $selected value=\"{$x['nama_pengguna']}\">{$x['nama']} - {$x['email']}</option>";
+                                    }?>
+                                </select><br>
+                                <input type="submit" value="Pilih">
                             </form>
                             <?php
                             /**

@@ -87,7 +87,7 @@
                     if($mutasi) { //jika ada/valid
                         ?><hr>
                         Rekening: <?=$_POST['nomor-rekening']?><br><br>
-                        <table border="1">
+                        <table>
                             <tr>
                                 <th>No</th><th>Waktu</th><th>Jenis Transaksi</th><th>Nominal</th><th>Keterangan</th>
                             </tr>

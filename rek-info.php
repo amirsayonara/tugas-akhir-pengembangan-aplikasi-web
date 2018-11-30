@@ -56,7 +56,7 @@
             <div class="artikel">
                 <h2>Informasi Rekening</h2>
                 <?php
-                echo '<br><table border=1><tr><th>No</th><th>Nomor Rekening</th><th>Saldo</th></tr>';$no = 1; //penomoran tabel
+                echo '<br><table><tr><th>No</th><th>Nomor Rekening</th><th>Saldo</th></tr>';$no = 1; //penomoran tabel
                 foreach (pengguna_rinci($_SESSION['nama-pengguna'])['rekening'] as $x) {
                     //menampilkan data rekening yang dimiliki pengguna dan saldonya
                     echo '<tr>';

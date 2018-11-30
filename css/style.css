@@ -234,3 +234,8 @@ hr {
     margin: auto;
     width: 222px;
 }
+
+tr, td, th, table {
+    border: 1px solid black;
+    border-radius: 3px;
+}

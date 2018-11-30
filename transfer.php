@@ -81,10 +81,8 @@
                                     <tr>
                                         <td>Nominal</td><td>: <?=rp($_POST['nominal'])?></td>
                                     </tr>
-                                    <tr>
-                                        <td></td><td><input type="submit" value="Konfirmasi"> <input type="reset" value="Batal" onclick="history.back()"></td>
-                                    </tr>
                                 </table>
+                                <input type="submit" value="Konfirmasi"> <input type="reset" value="Batal" onclick="history.back()">
                             </form>
                             <?php
                         } else {
