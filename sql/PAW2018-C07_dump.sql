@@ -93,9 +93,12 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`nama_pengguna`, `sandi`, `jenis_pengguna`, `email`, `nama`, `alamat`, `nomor_hp`, `aktif`) VALUES
-('admin', SHA2('admin', 0), '0', 'admin@admin.com', 'NAMA ADMIN', 'ALAMAT ADMIN', '080000000000', '1'),
-('user', SHA2('user', 0), '1', 'user@user.com', 'NAMA USER', 'ALAMAT USER', '080000000001', '1'),
-('user2', SHA2('user2', 0), '1', 'user2@user.com', 'NAMA USER DUA', 'ALAMAT USER 2', '080000000002', '1');
+('admin', SHA2('admin', 0), '0', 'admin@admin.com', 'ADMIN BANK', 'Jl. Soekarno - Hatta No. 123 Bangkalan', '080000000000', '1'),
+
+('isol', SHA2('isol123', 0), '1', 'mohammadfaishol@gmail.com', 'MOHAMMAD FAISHOL', 'KAMAL - BANGKALAN', '085954972261', '1'),
+('rohman', SHA2('rohman123', 0), '1', 'abdurrohman@hotmail.com', 'ABDUR ROHMAN', 'AROSBAYA - BANGKALAN', '085236776762', '1'),
+('natiq', SHA2('natiq123', 0), '1', 'natiqhasbi@hotmail.com', 'NATIQ HASBI ALIM', 'KELEYAN - SOCAH - BANGKALAN', '087705698001', '1'),
+('amir', SHA2('amir123', 0), '1', 'moch.amir@hotmail.com', 'MOCH. AMIR', 'JADDIH - SOCAH - BANGKALAN', '085230825938', '1');
 
 -- --------------------------------------------------------
 
@@ -116,8 +119,10 @@ CREATE TABLE `rekening` (
 --
 
 INSERT INTO `rekening` (`nomor_rekening`, `nama_pengguna`, `aktif`) VALUES
-('0002-01-011987-11-1', 'user', '1'),
-('0002-01-011987-11-2', 'user2', '1');
+('0002-01-011987-11-1', 'isol', '1'),
+('0002-01-011987-11-2', 'rohman', '1'),
+('0002-01-011987-11-3', 'natiq', '1'),
+('0002-01-011987-11-4', 'amir', '1');
 
 -- --------------------------------------------------------
 
@@ -143,8 +148,10 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id`, `waktu`, `jenis_transaksi`, `rekening_asal`, `rekening_tujuan`, `nominal`) VALUES
-('AB12C-ABCHD-8ABCD-88CAA', '2018-11-01 18:00:00', '0', '0002-01-011987-11-1', NULL, '100000.00'),
-('AB12C-ABCHD-8ABCD-88CAB', '2018-11-01 18:00:00', '0', '0002-01-011987-11-2', NULL, '100000.00');
+('AB12C-ABCHD-8ABCD-88CAA', '2018-11-01 18:00:00', '0', '0002-01-011987-11-1', NULL, '1000000.00'),
+('AB12C-ABCHD-8ABCD-88CAB', '2018-11-01 18:00:00', '0', '0002-01-011987-11-2', NULL, '1000000.00'),
+('AB12C-ABCHD-8ABCD-88CAC', '2018-11-01 18:00:00', '0', '0002-01-011987-11-3', NULL, '1000000.00'),
+('AB12C-ABCHD-8ABCD-88CAD', '2018-11-01 18:00:00', '0', '0002-01-011987-11-4', NULL, '1000000.00');
 
 COMMIT;
 
