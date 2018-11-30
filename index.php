@@ -35,10 +35,24 @@
             </div>
         </div>
         <div class="kanan">
-            <img src="images/gambar1.jpg" alt="Coba" width="100%">
+            <div class="slider">
+				<figure>
+					<img src="images/slide1.jpg" alt>
+					<img src="images/slide2.jpg" alt>
+					<img src="images/slide3.jpg" alt>
+				</figure>
+			</div>
             <div class="artikel">
-                <h2>Informasi</h2>
-                <p>Testing</p>
+                <h2>Tips Keamanan</h2>
+                <ol>
+                    <li>Pastikan Semua Data Perbankan Tidak Diketahui Orang Lain Termasuk Pegawai Bank</li>
+                    <li>Batasi Transaksi Hanya Di tempat Tertentu</li>
+                    <li>Pastikan Website Internet Banking Terlindungi dan Aman</li>
+                    <li>Ubah Password Anda Secara Berkala</li>
+                    <li>Pastikan Keluar Dari Browser Internet Banking Melalui Cara yang Benar</li>
+                    <li>Pastikan Transaksi Internet Banking Melalui Smartphone Aman</li>
+                    <li>Segera Menginformasikan Bank Jika mengalami kondisi Darurat</li>
+                </ol>
             </div>
         </div>
     </div>

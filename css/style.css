@@ -239,3 +239,30 @@ tr, td, th, table {
     border: 1px solid black;
     border-radius: 3px;
 }
+
+.slider {
+	overflow: hidden;
+	margin-bottom: 15px;
+}
+.slider figure img {
+	width: 20%;
+	float: left;
+}
+@keyframes slide {
+	0% { left: 0%; }
+	28.3% { left: 0%; }
+	33.3% { left: -100%; }
+	61.6% { left: -100%; }
+	66.6% { left: -200%; }
+	95% { left: -200%; }
+    100% { left: 0%; }
+}
+.slider figure { 
+  position: relative;
+  width: 500%;
+  margin: 0;
+  left: 0;
+  text-align: left;
+  font-size: 0;
+  animation: 30s slide infinite; 
+}
