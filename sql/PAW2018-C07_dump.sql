@@ -93,7 +93,7 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`nama_pengguna`, `sandi`, `jenis_pengguna`, `email`, `nama`, `alamat`, `nomor_hp`, `aktif`) VALUES
-('admin', SHA2('admin', 0), '0', 'admin@admin.com', 'ADMIN BANK', 'Jl. Soekarno - Hatta No. 123 Bangkalan', '080000000000', '1'),
+('admin', SHA2('admin', 0), '0', 'admin@admin.com', 'MOCH. AMIR', 'Jl. Soekarno - Hatta No. 123 Bangkalan', '080000000000', '1'),
 
 ('isol', SHA2('isol123', 0), '1', 'mohammadfaishol@gmail.com', 'MOHAMMAD FAISHOL', 'KAMAL - BANGKALAN', '085954972261', '1'),
 ('rohman', SHA2('rohman123', 0), '1', 'abdurrohman@hotmail.com', 'ABDUR ROHMAN', 'AROSBAYA - BANGKALAN', '085236776762', '1'),

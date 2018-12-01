@@ -10,6 +10,9 @@
 body {
     margin: 0px;
     background-color: #e7e7e7;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
 
 .konten, .konten-utama {
@@ -30,16 +33,21 @@ h1 img {
 }
 
 footer {
-    position: fixed;
-    bottom: 0;
     width: 100%;
+    bottom: 0;
+    padding: 20px;
+}
+
+footer .konten {
+    padding: 5px 0px 80px 0px;
 }
 
 .konten-utama {
     padding: 5px 0;
     margin-top: 100px;
-    margin-bottom: 70px;
+    margin-bottom: 15px;
     overflow: hidden;
+    flex: 1;
 }
 
 .kiri {
@@ -78,12 +86,6 @@ header nav, footer {
     padding: 10px 0;
 }
 
-footer p {
-    margin: 0px;
-    color: white;
-    text-align: center;
-}
-
 header ul {
     margin: 0px;
     padding: 5px 0px;
@@ -115,6 +117,10 @@ header li a:hover, .dipilih {
 
 .artikel {
     margin: 10px;
+}
+
+.footer-footer {
+    font-size: 9px;
 }
 
 .artikel h2 {
@@ -174,11 +180,22 @@ td ul {
     font-size: 9.5pt;
 }
 
+.info-pengguna {
+    width: fit-content;
+    margin: auto;
+    text-align: center;
+}
+
 hr {
     margin-top: 1rem;
     margin-bottom: 1rem;
     border: 0;
     border-top: 1px solid rgba(0,0,0,.1);
+}
+
+.hr-besar {
+    height: 15px;
+    background: #e7e7e7;
 }
 
 .kiri .artikel li a {
@@ -242,7 +259,24 @@ hr {
 
 tr, td, th, table {
     border: 1px solid black;
-    border-radius: 3px;
+}
+
+.tabel-khusus {
+    width: fit-content;
+    margin:auto;
+}
+
+.min-300 {
+    min-width: 300px;
+}
+
+.min-200 {
+    min-width: 200px;
+}
+
+th {
+    background-color: #5c5cd5;
+    color: white;
 }
 
 .slider {
@@ -274,4 +308,28 @@ tr, td, th, table {
 
 .c1 {
     font-size: 13px;
+}
+
+.warna-baris {
+    background-color: #f6f4ff;
+}
+
+.footer_kiri {
+    float: left;
+    color: white;
+}
+
+.footer_kanan {
+	float: right;
+	font-size: 14px;
+    margin-right: 10px;
+    color: white;
+}
+
+.footer_kanan a {
+	color: #fff;
+}
+
+.footer_kanan a:hover {
+	text-decoration: none;
 }

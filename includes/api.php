@@ -180,7 +180,7 @@ function validasi_masukan_sama(&$pesan_error, $name1, $name2, $nama) {
 
 //validasi masukan huruf/alfabet oleh 160411100142 MOHAMMAD FAISHOL
 function validasi_masukan_alfabet(&$pesan_error, $name) {
-    $pattern = "/^[a-z A-Z'-]+$/"; //alfabet dari huruf kecil maupun besar, ditambah spasi untuk pemisah nama
+    $pattern = "/^[a-z A-Z'.]+$/"; //alfabet dari huruf kecil maupun besar, ditambah spasi untuk pemisah nama
     if (@$_POST[$name]!='' & !preg_match($pattern, @$_POST[$name])) $pesan_error[$name] = 'Hanya boleh memasukkan alfabet';
 }
 
@@ -308,6 +308,7 @@ function generate_nomor_rekening() {
 $tmp = ''; //global variabel temporal, digunakan untuk menyimpan data nomor rekening yang dirandom supaya dapat dipanggil dan ditampilkan di html
 function add_bank_account_validation() {
     global $pesan_error; //mamanggil tampungan untuk pesan error di global
+    if ($_POST['set-awal'] < 50000) $pesan_error['set-awal'] = 'Minimal Rp 50.000,-'; //pengecekan jika saldo awal kurang dari 50 ribu
     validasi_masukan_numerik($pesan_error, 'set-awal'); //validasi untuk setoran awal numerik
     validasi_masukan_wajib($pesan_error, 'set-awal'); //wajib juga
     if (empty($pesan_error)) { //jika tidak ada kesalahan
@@ -418,6 +419,7 @@ function add_user_validation($jenis_pengguna) {
     validasi_masukan_email($pesan_error, 'email'); //validasi format email
     validasi_masukan_wajib($pesan_error, 'email'); //masukan wajib juga
     if ($jenis_pengguna!=0) { //jika jenis penggunanya tidak 0 (bukan admin) harus ada validasi setoran awal untuk nomor rekening
+        if ($_POST['set-awal'] < 50000) $pesan_error['set-awal'] = 'Minimal Rp 50.000,-'; //pengecekan jika saldo awal kurang dari 50 ribu
         validasi_masukan_numerik($pesan_error, 'set-awal'); //validasi numerik
         validasi_masukan_wajib($pesan_error, 'set-awal'); //masukan wajib juga
     }

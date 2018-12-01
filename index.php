@@ -7,11 +7,10 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/favicon.png">
-    <title>Se7en Bank - Internet Banking</title>
+    <script type="text/javascript" src="js/main.js"></script>
+    <title>Seven Bank - Internet Banking</title>
 </head>
 <body>
     <header>
@@ -38,9 +37,9 @@
         <div class="kanan">
             <div class="slider">
 				<figure>
-					<img src="images/slide1.jpg" alt>
-					<img src="images/slide2.jpg" alt>
-					<img src="images/slide3.jpg" alt>
+					<img src="images/slide1.jpg" alt="slide1">
+					<img src="images/slide2.jpg" alt="slide2">
+					<img src="images/slide3.jpg" alt="slide3">
 				</figure>
 			</div>
             <div class="artikel c1">
@@ -59,8 +58,20 @@
     </div>
     <footer>
         <div class="konten">
-            <div class="artikel">
-                <p>Copyright &copy; 2018 Se7en Bank - Internet Banking</p>
+            <div class="footer_kanan">
+                : Jl. Panglima Sudirman No. 7 - Jakarta Pusat<br>
+                : customer@sevenbank.co.id<br>
+                : (021) 1000000<br>
+                : (021) 1777777 (Bebas Pulsa)<br>
+            </div>
+            <div class="footer_kanan">
+                Kantor Pusat<br>
+                E-mail<br>
+                Telp.<br>
+                
+            </div>
+            <div class="footer_kiri">
+                Copyright &copy; 2018 Seven BANK
             </div>
         </div>
     </footer>
