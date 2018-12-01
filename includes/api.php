@@ -45,7 +45,7 @@ function login_validation() {
             if ($q->rowCount() > 0) {
                 //menyimpan data login berupa nama username ke dalam sesi, agar terdeteksi sudah login
                 $_SESSION['nama-pengguna'] = $q->fetchAll()[0]['nama_pengguna'];
-                header('Location: ./'); //mendirect ke halaman awal
+                header('Location: ./home'); //mendirect ke halaman awal
             } else $pesan_error['password'] = 'Password salah'; //jika setelah diselect dengan password ternyata kosong, sudah dipastikan passwordnya salah
         } else $pesan_error['username'] = 'Username tidak terdaftar'; //kalau diselect username saja tidak ada data, maka sudah dipastikan username itu tidak ada
     } catch (Exception $e) {
