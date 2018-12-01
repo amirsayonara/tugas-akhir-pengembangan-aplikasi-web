@@ -18,11 +18,15 @@ body {
 }
 
 header {
-    padding: 15px 0;
     position: fixed;
     top: 0;
     width: 100%;
     box-shadow: rgba(0, 0, 0, 0.14) 0px 0px 4px 2px;
+}
+
+h1 img {
+    margin-top: 10px;
+    margin-left: 53px;
 }
 
 footer {
@@ -33,7 +37,7 @@ footer {
 
 .konten-utama {
     padding: 5px 0;
-    margin-top: 90px;
+    margin-top: 100px;
     margin-bottom: 70px;
     overflow: hidden;
 }
@@ -63,6 +67,7 @@ header h1 {
 
 header nav {
     float: right!important;
+    margin-top: 13px;
 }
 
 h2 {
@@ -265,4 +270,8 @@ tr, td, th, table {
   text-align: left;
   font-size: 0;
   animation: 30s slide infinite; 
+}
+
+.c1 {
+    font-size: 13px;
 }

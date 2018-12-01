@@ -10,12 +10,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="css/style.css">
-    <title>C07 Internet Banking - Masuk</title>
+    <link rel="icon" href="images/favicon.png">
+    <title>Se7en Bank - Internet Banking</title>
 </head>
 <body>
     <header>
         <div class="konten">
-            <h1>C07 Net Banking</h1>
+            <h1><img src="images/logo.png" alt="logo"></h1>
             <nav>
                 <ul>
                     <li><a href="help">Bantuan</a></li>
@@ -42,7 +43,7 @@
 					<img src="images/slide3.jpg" alt>
 				</figure>
 			</div>
-            <div class="artikel">
+            <div class="artikel c1">
                 <h2>Tips Keamanan</h2>
                 <ol>
                     <li>Pastikan Semua Data Perbankan Tidak Diketahui Orang Lain Termasuk Pegawai Bank</li>
@@ -59,7 +60,7 @@
     <footer>
         <div class="konten">
             <div class="artikel">
-                <p>C07 Internet Banking - Pengembangan Aplikasi Web (C) - 2018</p>
+                <p>Copyright &copy; 2018 Se7en Bank - Internet Banking</p>
             </div>
         </div>
     </footer>
