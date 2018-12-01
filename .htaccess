@@ -14,6 +14,3 @@ RewriteRule ^([^.]+)$ $1.php [NC,L]
 	php_value max_execution_time 30000
 	php_value max_input_time 30000
 	php_value memory_limit -1
-
-# menyetting agar tidak langsung ditambahkan slash otomatis "/" jika url merequest folder
-directoryslash off
